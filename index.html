@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcus Romundset</title>
+    <style>
+        body {
+            font-family:  Times New Roman, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #000;
+            background-color: #f8f8f8;
+        }
+        .bio-link {
+            display: block; /* Ensures the link appears below the image */
+            margin-top: 10px; /* Adds space between the image and the link */
+            color: #3a7a3a; /* Slight green hue */
+            text-decoration: none; /* Removes underline */
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .bio-link:hover {
+            color: #2e5b2e; /* Darker green on hover */
+            text-decoration: underline; /* Adds underline on hover */
+            transform: scale(1.05); /* Slightly enlarges on hover */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0px;
+        }
+        .photo-column {
+            flex: 1;
+            min-width: 50px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .photo-column img {
+            max-width: 90%;
+            height: 250px;
+            width: 250px;
+            border-radius: 0px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .info-column {
+            flex: 2;
+            min-width: 300px;
+            max-width: 700px;
+        }
+        header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            margin-bottom: 0px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            margin-bottom: 0px;
+            color: #003262;
+        }
+        h4 {
+            font-size: 1.5em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+       }
+        ul {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #666;
+        }
+        .left-aligned-section {
+            text-align: left; /* Left-aligns the section and its content */
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 50px;
+            max-width: 245px;
+            margin-top: 10px;
+        }
+        .photo-text-container {
+            display: flex;
+            gap: 75px; /* Adds space between the image and text */
+            align-items: left; /* Vertically aligns the image and text */
+            margin-top: 0px; /* Adds spacing between the main section and the nested columns */
+        }
+        .entry {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Space between the image and text */
+            padding: 20px 0; /* Space around each entry */
+
+        }
+        .image-column img {
+            width: 160px; /* Set a fixed size for images */
+            height: 80px;
+            object-fit: contain; /* Ensures proper scaling */
+        }
+        .text-column {
+            flex: 1; /* Ensures the text takes up remaining space */
+            justify-content: space-evenly;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 0; /* No extra space around the line */
+            justify-content: space-evenly;
+        }
+        .coursework {
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* 1 part for course names, 3 parts for descriptions */
+            gap: 10px; /* Adds spacing between the columns */
+            margin-top: 10px; /* Adds space above the coursework grid */
+        }
+        .course-name {
+            font-weight: bold;
+            text-align: right; /* Align course names to the right */
+            padding-right: 10px; /* Adds space between name and description */
+        }
+        .course-description {
+            text-align: left;
+        }
+        .course-name a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .course-name a:hover {
+            text-decoration: underline;
+        }
+        .competitions {
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* 1 part for course names, 3 parts for descriptions */
+            gap: 10px; /* Adds spacing between the columns */
+            margin-top: 10px; /* Adds space above the coursework grid */
+        }
+        .comp-name {
+            font-weight: bold;
+            text-align: right; /* Align course names to the right */
+            padding-right: 10px; /* Adds space between name and description */
+        }
+        .comp-description {
+            text-align: left;
+        }
+        .comp-name a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .comp-name a:hover {
+            text-decoration: underline;
+        }
+        .c {
+            text-indent: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Column for the picture -->
+    <div class="photo-column">
+        <img src="Cover Picture 2024.jpg" alt="Emmanuel Saez Photo">
+        <a href="Biography.html" class="bio-link">Biography Page</a>
+        <a href="Resume_2024_1.pdf" class="bio-link">Resume / CV</a>
+        <section class="left-aligned-section">
+            <h3>Awards & Recognition</h3>
+            <p>
+                <br>
+                <b><u>Case Competitions</b></u> <br/>
+                <b>Top 5</b>  &nbsp Planned Parenthood x 180 DC <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                (350+ participants)<br/>
+                <b>Top 8</b>  &nbsp PwC x Haas Business School<br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                (110+ participants) <br/>
+                <br/>
+                <b><u>Academic Awards:</b></u> <br/>
+                <b>Salutatorian SMHS</b> (Rank 2 / 35) <br/>
+                <b>AP Scholar with Distinction</b> (2x) <br/>
+                <b>SAT:</b> 1540 <br/>
+                <b>AP:</b> 10 x 5's.
+                <br/>
+                <br/>
+                <b><u>Athletic Awards:</b></u> <br/>
+                <b>Junior Club Champion</b> <br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspSalten Golf Club 2022 <br/>
+                <b>1st Place</b> <br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDivision III DoDEA Europe <br/>&nbsp &nbsp &nbsp &nbsp &nbsp &nbspSoccer Championships 2022<br/>
+                <b>3rd Place</b> <br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDoDEA Europe Golf <br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspChampionships 2021 <br/>
+                <b>All-European Team</b> <br/>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDoDEA Golf 2021 <br/>
+            </p>
+        </section>
+    </div>
+
+    <!-- Column for the name, title, and information -->
+    <div class="info-column">
+        <header>
+            <h1>Marcus Romundset</h1>
+            <h2>Computer Science B.A. &<br/> Business Administration B.S.
+            <br/>
+                <a href="https://www.berkeley.edu/" target="_blank" text-decoration="none">
+                    <img src="UC_SEAL.png" alt="UC Berkeley Seal" style="width:120px;height:120px">
+                </a>
+                <br/>University of California, Berkeley<h2/>
+        </header>
+
+        <section>
+            <h3>About</h3>
+            <p>Welcome to the personal website of Marcus Romundset. This page features relevant coursework plus additional links to
+            both technical and strategy projects I have done. If you wish to learn more about the non-professional
+            side of me, go to the Biography page, linked underneath the picture on the left. </p>
+        </section>
+
+        <section>
+            <h3>Professional Experience</h3>
+            <ul>
+                <br>
+                <hr>
+                <div class="entry">
+                    <div class="image-column">
+                        <a href="https://www.jpmorganchase.com/" target="_blank">
+                            <img src="JP-Morgan-Chase-Logo.png" alt="JP Morgan Chase Logo">
+                        </a>
+                    </div>
+                    <div class="text-column">
+                        <h2>Corporate Strategy Consultant</h2>
+                        <p>August 2024 - Present</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="entry">
+                    <div class="image-column">
+                        <a href="https://www.tona.ai/" target="_blank">
+                            <img src="Tona.ai%20Logo.png" alt="Tona.ai Logo">
+                        </a>
+                    </div>
+                    <div class="text-column">
+                        <h2>Head of Strategic Finance</h2>
+                        <p>May 2024 - Present</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="entry">
+                    <div class="image-column">
+                        <a href="https://www.berkeley.edu/research/" target="_blank">
+                            <img src="Berkeley%20Logo%20UC.png" alt="UC Berkeley Logo">
+                        </a>
+                    </div>
+                    <div class="text-column">
+                        <h2>Principal Researcher</h2>
+                        <p>January 2024 - Present</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="entry">
+                    <div class="image-column">
+                        <a href="https://www.diversatech.org/" target="_blank">
+                            <img src="file.png" style="height:80px;with:80px" alt="UC Berkeley Logo">
+                        </a>
+                    </div>
+                    <div class="text-column">
+                        <h2>Senior Consultant</h2>
+                        <p>May 2024 - Present</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="entry">
+                    <div class="image-column">
+                        <a href="https://www.rema.no/" target="_blank">
+                            <img src="Rema1000.png" alt="UC Berkeley Logo">
+                        </a>
+                    </div>
+                    <div class="text-column">
+                        <h2>Department Manager</h2>
+                        <p>August 2022 - July 2023</p>
+                    </div>
+                </div>
+                <hr>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Relevant Coursework</h3>
+            <div class="coursework">
+                <div class="course-name">
+                    <a href="https://www2.eecs.berkeley.edu/Courses/CS70/" target="_blank">CS 70</a>
+                </div>
+                <div class="course-description">Discrete Mathematics & Probability Theory</div>
+                <div class="course-name">
+                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61B/" target="_blank">CS 61b</a>
+                </div>
+                <div class="course-description">Data Structures</div>
+                <div class="course-name">
+                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61A/" target="_blank">CS 61a</a>
+                </div>
+                <div class="course-description">Structure and Interpretation of Computer Programs</div>
+                <div class="course-name">
+                    <a href="https://www2.eecs.berkeley.edu/Courses/EECS16A/" target="_blank">EECS 16a</a>
+                </div>
+                <div class="course-description">Designing Information Devices and Systems</div>
+                <div class="course-name">
+                    <a href="https://math.berkeley.edu/courses/overview/lowerdivcourses/math53" target="_blank">Math 53</a>
+                </div>
+                <div class="course-description">Multivariable Calculus</div>
+                <div class="course-name">
+                    <a href="https://math.berkeley.edu/courses/overview/lowerdivcourses/math1B" target="_blank">Math 1b</a>
+                </div>
+                <div class="course-description">Calculus 2</div>
+                <div class="course-name">
+                    <a href="https://classes.berkeley.edu/content/2024-spring-econ-2-001-lec-001" target="_blank">Econ 2</a>
+                </div>
+                <div class="course-description">Introduction to Economics (Advanced)</div>
+                <div class="course-name">
+                    <a href="https://classes.berkeley.edu/content/2024-fall-ugba-10x-001-lec-001" target="_blank">UGBA 10X</a>
+                </div>
+                <div class="course-description">Introduction to Business</div>
+            </div>
+        </section>
+
+
+        <section>
+            <h3>Contact</h3>
+            <p>mromundset@berkeley.edu</p>
+        </section>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 Marcus Romundset. All rights reserved.</p>
+</div>
+
+</body>
+</html>

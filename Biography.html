@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Columns with Image Slider</title>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            display: flex;
+            color: #00000;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            margin: 75px; /* Adds spacing from the margins */
+            background-color: #f8f8f8;
+        }
+        .text-container {
+            width: 60%; /* Equal width for both columns */
+            gap: 10px;
+        }
+        .slider-container {
+            width: 50%;
+            gap: 10px;
+        }
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+        }
+        .text-container h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #000;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            text-align: left;
+        }
+        .text-container p {
+            margin: 10px 0 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #000;
+        }
+        .slider-container {
+            position: relative;
+            max-width: 400px; /* Maintains square size for the image slider */
+            aspect-ratio: 1 / 1; /* Ensures a square */
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0px;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.7); /* Slight transparency */
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+        }
+        .arrow:hover {
+            color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        .bio-link {
+            display: block; /* Ensures the link appears below the image */
+            margin-top: 10px; /* Adds space between the image and the link */
+            color: #3a7a3a; /* Slight green hue */
+            text-decoration: none; /* Removes underline */
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .bio-link:hover {
+            color: #2e5b2e; /* Darker green on hover */
+            text-decoration: underline; /* Adds underline on hover */
+            transform: scale(1.05); /* Slightly enlarges on hover */
+        }
+        .coursework {
+            display: grid;
+            grid-template-columns: 2fr 3fr; /* 1 part for course names, 3 parts for descriptions */
+            gap: 10px; /* Adds spacing between the columns */
+            margin-top: 10px; /* Adds space above the coursework grid */
+        }
+        .course-name {
+            font-weight: bold;
+            text-align: right; /* Align course names to the right */
+            padding-right: 10px; /* Adds space between name and description */
+        }
+        .course-description {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="text-container">
+    <h1>Hei!</h1>
+    <p>
+        To keep it brief, I am a Norwegian/Lithuanian that grew up on military bases around Europe. Up to this point,
+        I have lived in Spain, Italy, Norway, and now the United States. Throughout my upbrining, I've always
+        loved to play all kinds of sports. Soccer (or football as we say in Europe) was my main sport when I was younger,
+        where I played the position of goalie. Besides soccer, I also loved X-Country skiing, running, and tennis. Once I reached adequate
+        maturity, I realized that I had to switch avenues into a more slow-paced and boring sport: golf. My current handicap
+        is in the low 3's (on good days, at least). As a final fun fact, I hiked to the top of the tallest volcano in Europe during an eruption!
+        <br/>
+
+    <section>
+        <h2>Fact Sheet</h2>
+        <div class="coursework">
+            <div class="course-name">Favorite Soccer Team</div>
+            <div class="course-description">Liverpool</div>
+            <div class="course-name">Least Favorite Soccer Team</div>
+            <div class="course-description">Manchester United</div>
+            <div class="course-name">Favorite Golfer</div>
+            <div class="course-description">Viktor Hovland</div>
+            <div class="course-name">All-time Low (Golf)</div>
+            <div class="course-description">71 (E)</div>
+            <div class="course-name">Best Golf Course I've Played</div>
+            <div class="course-description">Lofoten Golf Links</div>
+            <div class="course-name">Favorite Food</div>
+            <div class="course-description">Koldūnai (Lithuanian Dish)</div>
+            <div class="course-name">Favorite Dog Breed</div>
+            <div class="course-description">French Bulldog</div>
+            <div class="course-name">Bucketlist Visitation</div>
+            <div class="course-description">Grand Canyon</div>
+            <br>
+        </div>
+    </section>
+
+    <a href="index.html" class="bio-link">Back To Main Page</a>
+    </p>
+</div>
+
+<div class="slider-container">
+    <span class="arrow left" onclick="prevSlide()">&lt;</span>
+    <div class="slider" id="slider">
+        <img src="LA%20Pic.jpg" alt="Image 1">
+        <img src="Oski.jpg" alt="Image 2">
+        <img src="SandHornet.jpg" alt="Image 3">
+        <img src="MidnightSun%20Golf.jpg" alt="Image 5">
+    </div>
+    <span class="arrow right" onclick="nextSlide()">&gt;</span>
+</div>
+
+<script>
+    const slider = document.getElementById('slider');
+    const images = slider.getElementsByTagName('img');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        // Wrap around the index if it's out of bounds
+        if (index < 0) {
+            currentIndex = images.length - 1;
+        } else if (index >= images.length) {
+            currentIndex = 0;
+        } else {
+            currentIndex = index;
+        }
+        const offset = -currentIndex * 100;
+        slider.style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+</script>
+</body>
+</html>
+
