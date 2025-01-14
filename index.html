@@ -69,7 +69,7 @@
             color: #003262;
         }
         h4 {
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin-top: 0px;
             margin-bottom: 0px;
        }
@@ -117,6 +117,11 @@
         .image-column img {
             width: 160px; /* Set a fixed size for images */
             height: 80px;
+            object-fit: contain; /* Ensures proper scaling */
+        }
+        .image-column2 img {
+            width: 300px; /* Set a fixed size for images */
+            height: 200px;
             object-fit: contain; /* Ensures proper scaling */
         }
         .text-column {
@@ -305,6 +310,22 @@
             </ul>
         </section>
 
+        <section id="media">
+            <h3>In the Media</h3>
+                <h4><br/>"The Flavor Networks Project and One Of The Students
+                Tracking Scandinavian Cuisine With Data Science"</h4>
+                <p>Interview perfromed by University of California, Berkeley newsletter regarding work on technical
+                research. Discussed the importance of exploring fields outside your major,
+                    the value of interacting with faculty here at Berkeley, and the surprising
+                    nuances between STEM and the Arts and Humanities.</p>
+            <div class="image-column2">
+                <a href="https://artshumanities.berkeley.edu/news/flavor-network-project-and-one-students-tracking-scandinavian-cuisine-data-science" target="_blank">
+                    <img src="BerkeleyArticle.png" alt="UC Berkeley Logo">
+                </a>
+                <!-- More articles as needed -->
+            </div>
+        </section>
+
         <section>
             <h3>Relevant Coursework</h3>
             <div class="coursework">
@@ -312,6 +333,10 @@
                     <a href="https://www2.eecs.berkeley.edu/Courses/CS70/" target="_blank">CS 70</a>
                 </div>
                 <div class="course-description">Discrete Mathematics & Probability Theory</div>
+                <div class="course-name">
+                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61C/" target="_blank">CS 61c</a>
+                </div>
+                <div class="course-description">Great Ideas in Computer Architecture (Machine Structures)</div>
                 <div class="course-name">
                     <a href="https://www2.eecs.berkeley.edu/Courses/CS61B/" target="_blank">CS 61b</a>
                 </div>
@@ -337,6 +362,10 @@
                 </div>
                 <div class="course-description">Introduction to Economics (Advanced)</div>
                 <div class="course-name">
+                    <a href="https://classes.berkeley.edu/content/2024-fall-ugba-88-001-lec-001" target="_blank">UGBA 88</a>
+                </div>
+                <div class="course-description">Data and Decisions</div>
+                <div class="course-name">
                     <a href="https://classes.berkeley.edu/content/2024-fall-ugba-10x-001-lec-001" target="_blank">UGBA 10X</a>
                 </div>
                 <div class="course-description">Introduction to Business</div>
@@ -352,7 +381,7 @@
 </div>
 
 <div class="footer">
-    <p>&copy; 2024 Marcus Romundset. All rights reserved.</p>
+    <p>&copy; 2025 Marcus Romundset. All rights reserved.</p>
 </div>
 
 </body>
