@@ -1,0 +1,707 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Interactive 3D Knowledge Graph</title>
+
+    <!-- Your site‐wide CSS (stars, theme toggle, navbar styles…) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Finnlandica&display=swap" rel="stylesheet"/>
+
+    <!-- Inline graph styles -->
+    <style>
+        html {
+            zoom: 0.8;
+        }
+        header.site-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent !important;
+        z-index: 1000;
+        }
+        /* if your .project-nav or .back-button had a bg, clear it too */
+
+        svg#graph {
+        width: 100vw;
+        height: 100vh;
+        cursor: grab;
+        display: block;
+        }
+        body:not([data-theme="light"]) svg#graph text {
+          fill: white;
+        }
+        svg#graph:active {
+        cursor: grabbing;
+        }
+        circle.particle {
+        fill: white;
+        r: 3;
+        opacity: 0.9;
+        }
+        text {
+        fill: black;
+        font-family: 'Finnlandica', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        }
+        .node:hover text {
+        visibility: visible;
+        }
+        .node-element,
+        .line-element,
+        .particle-element {
+        transition: opacity 0.3s ease;
+        }
+        .node-element.dimmed,
+        .line-element.dimmed,
+        .particle-element.dimmed {
+        opacity: 0.2;
+        }
+        line {
+        stroke-width: 2.0;
+        }
+    </style>
+    </head>
+
+    <body>
+    <!-- STAR FIELD BACKGROUND -->
+    <div id="twinkling-stars"></div>
+    <div id="shooting-stars"></div>
+
+    <!-- NAVBAR -->
+    <header class="site-header">
+        <nav class="project-nav">
+        <a href="index.html" class="back-button">&larr; Back</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun"    xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon"   xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        </nav>
+    </header>
+
+    <!-- YOUR 3D GRAPH SVG -->
+    <svg id="graph">
+        <defs>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/>
+        </filter>
+        <filter id="lineShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.1"/>
+        </filter>
+        </defs>
+    </svg>
+
+  <script>
+    
+    const svg = document.getElementById("graph");
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    const VERTICAL_SHIFT = 70;
+    let center = { x: (width / 2) + 150, y: height / 2 + 20};
+    
+    // Handle window resize to keep graph centered
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      center = { x: width / 2, y: height / 2 };
+    });
+    const R = 180;
+
+    const labels = [
+      "RAG", "CAG", "Vector Search", "Semantic Caching",
+      "Memory Systems", "Tool Calling", "Function Routing", "Query Planning",
+      "Knowledge Graphs", "Embeddings", "Reranking", "Context Windows",
+      "Multi-Modal RAG", "Agentic Workflows", "Intent Classification", "Response Synthesis",
+      "Retrieval Strategies", "Hyperspell Compositions"
+    ];
+
+    const purples = ["#ad11a8", "#b735b2", "#c94ac5", "#d95fd5", "#e475e2"];
+
+    const nodeElements = [], connections = new Set(), edgeList = [], particles = [];
+    const particleInterval = 650;
+    let lastParticleTime = 0;
+    let currentParticleNode = Math.floor(Math.random() * labels.length);
+    let angleX = 0, angleY = 0;
+    let hoveredNodeIndex = -1;
+    
+    // Movement control variables
+    const baselineSpeed = 0.0008;
+    const frictionRate = 0.992;
+    const stopThreshold = 0.0001;
+    let rotationDeltaX = (Math.random() - 0.5) * 0.008;
+    let rotationDeltaY = (Math.random() - 0.5) * 0.008;
+    let lastStopTime = 0;
+    let isStationary = false;
+    let userInteracting = false;
+    let mouseDown = false, lastMouseX, lastMouseY;
+
+    const nodes = labels.map((label, i) => {
+      const phi = Math.acos(-1 + (2 * i) / labels.length);
+      const theta = Math.sqrt(labels.length * Math.PI) * phi;
+      const x = 1.3 * R * Math.cos(theta) * Math.sin(phi);
+      const y = 0.9 * R * Math.sin(theta) * Math.sin(phi);
+      const z = R * Math.cos(phi);
+      const r = 12;
+      const fill = purples[Math.floor(Math.random() * purples.length)];
+      return { label, x, y, z, r, fill, originalFill: fill, glowUntil: 0 };
+    });
+
+    // Curated connections for visual balance and conceptual clarity
+    const strategicConnections = [
+      // Core RAG ecosystem (central hub)
+      [0, 2], [0, 9], [0, 17], // RAG -> Vector Search, Embeddings, Hyperspell Compositions
+      
+      // CAG performance layer
+      [1, 3], [1, 4], [1, 17], // CAG -> Semantic Caching, Memory Systems, Hyperspell Compositions
+      
+      // Vector Search connections
+      [2, 9], [2, 10], // Vector Search -> Embeddings, Reranking
+      
+      // Memory and caching synergy
+      [3, 4], [4, 13], // Semantic Caching -> Memory Systems -> Agentic Workflows
+      
+      // Tool orchestration chain
+      [5, 6], [6, 7], // Tool Calling -> Function Routing -> Query Planning
+      [5, 17], // Tool Calling -> Hyperspell Compositions
+      
+      // Query intelligence
+      [7, 14], [14, 16], // Query Planning -> Intent Classification -> Retrieval Strategies
+      
+      // Knowledge representation
+      [8, 9], [8, 0], // Knowledge Graphs -> Embeddings, RAG
+      
+      // Context management
+      [11, 4], [11, 15], // Context Windows -> Memory Systems, Response Synthesis
+      
+      // Multi-modal capabilities
+      [12, 0], [12, 15], // Multi-Modal RAG -> RAG, Response Synthesis
+      
+      // Agentic orchestration (key hub)
+      [13, 5], [13, 17], // Agentic Workflows -> Tool Calling, Hyperspell Compositions
+      
+      // Response generation
+      [15, 0], [15, 17], // Response Synthesis -> RAG, Hyperspell Compositions
+      
+      // Strategic retrieval
+      [16, 2], [16, 10], // Retrieval Strategies -> Vector Search, Reranking
+      
+      // Cross-connections for complexity
+      [1, 0], // CAG -> RAG (caching relationship)
+      [13, 7], // Agentic Workflows -> Query Planning
+      [14, 15], // Intent Classification -> Response Synthesis
+      [10, 15] // Reranking -> Response Synthesis
+    ];
+
+    // Clear existing connections and add strategic ones
+    connections.clear();
+    edgeList.length = 0;
+    
+    strategicConnections.forEach(([from, to]) => {
+      const key = [Math.min(from, to), Math.max(from, to)].join("-");
+      if (!connections.has(key)) {
+        connections.add(key);
+        edgeList.push({ from, to });
+      }
+    });
+
+    function createGradient(fromColor, toColor, id) {
+      const defs = svg.querySelector('defs');
+      const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+      gradient.setAttribute("id", id);
+      gradient.setAttribute("x1", "0%");
+      gradient.setAttribute("y1", "0%");
+      gradient.setAttribute("x2", "100%");
+      gradient.setAttribute("y2", "0%");
+      
+      const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+      stop1.setAttribute("offset", "0%");
+      stop1.setAttribute("stop-color", fromColor);
+      
+      const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+      stop2.setAttribute("offset", "100%");
+      stop2.setAttribute("stop-color", toColor);
+      
+      gradient.appendChild(stop1);
+      gradient.appendChild(stop2);
+      defs.appendChild(gradient);
+    }
+
+    function rotate3D(x, y, z, angleX, angleY) {
+      let y1 = y * Math.cos(angleX) - z * Math.sin(angleX);
+      let z1 = y * Math.sin(angleX) + z * Math.cos(angleX);
+      
+      let x2 = x * Math.cos(angleY) + z1 * Math.sin(angleY);
+      let z2 = -x * Math.sin(angleY) + z1 * Math.cos(angleY);
+      
+      return { x: x2, y: y1, z: z2 };
+    }
+
+    function project(x, y, z) {
+      const scale = 300 / (300 + z);
+      return {
+        x: center.x + x * scale,
+        y: center.y + y * scale,
+        z,
+        scale
+      };
+    }
+
+    function startRandomMovement() {
+      const angle = Math.random() * Math.PI * 2;
+      rotationDeltaX = Math.sin(angle) * baselineSpeed * 0.1;
+      rotationDeltaY = Math.cos(angle) * baselineSpeed * 0.1;
+      isStationary = false;
+    }
+
+    function updateMovement() {
+      const now = Date.now();
+      
+      if (!userInteracting) {
+        const currentSpeed = Math.sqrt(rotationDeltaX * rotationDeltaX + rotationDeltaY * rotationDeltaY);
+        
+        if (currentSpeed < stopThreshold && !isStationary) {
+          isStationary = true;
+          lastStopTime = now;
+          rotationDeltaX = 0;
+          rotationDeltaY = 0;
+        } else if (isStationary && (now - lastStopTime > 1000)) {
+          startRandomMovement();
+        } else if (!isStationary && currentSpeed > 0) {
+          const speedDifference = Math.abs(currentSpeed - baselineSpeed);
+          const adjustmentRate = speedDifference > baselineSpeed * 0.5 ? 0.994 : 0.998;
+          
+          if (currentSpeed > baselineSpeed * 1.05) {
+            rotationDeltaX *= adjustmentRate;
+            rotationDeltaY *= adjustmentRate;
+          } else if (currentSpeed < baselineSpeed * 0.95) {
+            const targetRatio = baselineSpeed / currentSpeed;
+            const easingFactor = 1 + (targetRatio - 1) * (1 - adjustmentRate);
+            rotationDeltaX *= easingFactor;
+            rotationDeltaY *= easingFactor;
+          }
+        }
+      }
+      
+      angleX += rotationDeltaX;
+      angleY += rotationDeltaY;
+    }
+
+    function getConnectedNodes(nodeIndex) {
+      const connected = new Set();
+      edgeList.forEach(edge => {
+        if (edge.from === nodeIndex) {
+          connected.add(edge.to);
+        }
+        if (edge.to === nodeIndex) {
+          connected.add(edge.from);
+        }
+      });
+      return connected;
+    }
+
+    function getConnectedEdges(nodeIndex) {
+      const connected = [];
+      edgeList.forEach((edge, index) => {
+        if (edge.from === nodeIndex || edge.to === nodeIndex) {
+          connected.push(index);
+        }
+      });
+      return connected;
+    }
+
+    function updateGraph() {
+      const now = Date.now();
+      
+      updateMovement();
+      
+      const projectedNodes = nodes.map((n, i) => {
+        const r = rotate3D(n.x, n.y, n.z, angleX, angleY);
+        const proj = project(r.x, r.y, r.z);
+        const scaledR = 8 + 4 * proj.scale;
+        return { ...proj, label: n.label, index: i, r: scaledR, fill: n.fill };
+      });
+
+      const zOrdered = [];
+      const connectedNodes = hoveredNodeIndex >= 0 ? getConnectedNodes(hoveredNodeIndex) : new Set();
+      const connectedEdges = hoveredNodeIndex >= 0 ? getConnectedEdges(hoveredNodeIndex) : [];
+
+      // Render edges with gradients
+      edgeList.forEach(({ from, to }, edgeIndex) => {
+        const fromNode = projectedNodes[from];
+        const toNode = projectedNodes[to];
+        const fromColor = nodes[from].fill;
+        const toColor = nodes[to].fill;
+        const gradientId = `gradient-${from}-${to}`;
+
+        const dx = toNode.x - fromNode.x;
+        const dy = toNode.y - fromNode.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        const offsetX1 = (dx / dist) * fromNode.r;
+        const offsetY1 = (dy / dist) * fromNode.r;
+        const offsetX2 = (dx / dist) * toNode.r;
+        const offsetY2 = (dy / dist) * toNode.r;
+
+        const x1 = fromNode.x + offsetX1;
+        const y1 = fromNode.y + offsetY1;
+        const x2 = toNode.x - offsetX2;
+        const y2 = toNode.y - offsetY2;
+
+        const isHighlighted = hoveredNodeIndex < 0 || connectedEdges.includes(edgeIndex);
+
+        zOrdered.push({ 
+          type: 'line', 
+          z: Math.max(fromNode.z, toNode.z), 
+          x1, y1, x2, y2, 
+          gradientId, 
+          fromColor, 
+          toColor,
+          isHighlighted
+        });
+      });
+
+      // Update particles
+      const nextParticles = [];
+      particles.forEach(({ edge, t }) => {
+        if (t > 1) return;
+        
+        const easedT = t < 0.5 
+          ? 2 * t * t
+          : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        
+        const fromNode = projectedNodes[edge.from];
+        const toNode = projectedNodes[edge.to];
+
+        const dx = toNode.x - fromNode.x;
+        const dy = toNode.y - fromNode.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        const offsetX1 = (dx / dist) * fromNode.r;
+        const offsetY1 = (dy / dist) * fromNode.r;
+        const offsetX2 = (dx / dist) * toNode.r;
+        const offsetY2 = (dy / dist) * toNode.r;
+
+        const startX = fromNode.x + offsetX1;
+        const startY = fromNode.y + offsetY1;
+        const endX = toNode.x - offsetX2;
+        const endY = toNode.y - offsetY2;
+        const z = fromNode.z + (toNode.z - fromNode.z) * easedT;
+
+        const x = startX + (endX - startX) * easedT;
+        const y = startY + (endY - startY) * easedT;
+
+        if (t + 0.02 > 1) {
+          nodes[edge.to].glowUntil = Date.now() + 400;
+          currentParticleNode = edge.to;
+        }
+
+        const isHighlighted = hoveredNodeIndex < 0 || 
+          edge.from === hoveredNodeIndex || 
+          edge.to === hoveredNodeIndex ||
+          connectedNodes.has(edge.from) || 
+          connectedNodes.has(edge.to);
+
+        zOrdered.push({ type: 'particle', z, x, y, isHighlighted });
+        nextParticles.push({ edge, t: t + 0.02 });
+      });
+      particles.length = 0;
+      particles.push(...nextParticles);
+
+      // Add new particles
+      if (now - lastParticleTime > particleInterval) {
+        const availableEdges = edgeList.filter(edge => 
+          edge.from === currentParticleNode || edge.to === currentParticleNode
+        );
+        
+        if (availableEdges.length > 0) {
+          let selectedEdge = availableEdges[Math.floor(Math.random() * availableEdges.length)];
+          
+          if (selectedEdge.to === currentParticleNode) {
+            selectedEdge = { from: selectedEdge.to, to: selectedEdge.from };
+          }
+          
+          particles.push({ edge: selectedEdge, t: 0 });
+          lastParticleTime = now;
+        }
+      }
+
+      // Add nodes to render queue
+      projectedNodes.forEach(p => {
+        const isHighlighted = hoveredNodeIndex < 0 || 
+          p.index === hoveredNodeIndex || 
+          connectedNodes.has(p.index);
+        zOrdered.push({ type: 'node', z: p.z + 1, p, isHighlighted });
+      });
+
+      // Clear and render SVG
+      svg.innerHTML = '<defs><filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/></filter><filter id="lineShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.1"/></filter></defs>';
+      
+      zOrdered.sort((a, b) => b.z - a.z);
+
+      zOrdered.forEach(item => {
+        if (item.type === 'line') {
+          createGradient(item.fromColor, item.toColor, item.gradientId);
+          
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("class", "line-element");
+          line.setAttribute("x1", item.x1);
+          line.setAttribute("y1", item.y1);
+          line.setAttribute("x2", item.x2);
+          line.setAttribute("y2", item.y2);
+          line.setAttribute("stroke", `url(#${item.gradientId})`);
+          line.setAttribute("stroke-width", "2.0");
+          line.setAttribute("filter", "url(#lineShadow)");
+          
+          if (!item.isHighlighted) {
+            line.classList.add("dimmed");
+          }
+          
+          svg.appendChild(line);
+        } else if (item.type === 'particle') {
+          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          circle.setAttribute("class", "particle particle-element");
+          circle.setAttribute("cx", item.x);
+          circle.setAttribute("cy", item.y);
+          circle.setAttribute("r", 3);
+          circle.setAttribute("filter", "url(#shadow)");
+          
+          if (!item.isHighlighted) {
+            circle.classList.add("dimmed");
+          }
+          
+          svg.appendChild(circle);
+        } else if (item.type === 'node') {
+          const { x, y, label, r, fill, index } = item.p;
+          const n = nodes[index];
+          const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+          g.classList.add("node", "node-element");
+          g.setAttribute("data-node-index", index);
+          
+          if (!item.isHighlighted) {
+            g.classList.add("dimmed");
+          }
+          
+          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          circle.setAttribute("class", "node-dot");
+          circle.setAttribute("cx", x);
+          circle.setAttribute("cy", y);
+          circle.setAttribute("r", r);
+          circle.setAttribute("fill", fill);
+          circle.setAttribute("stroke", fill);
+          circle.setAttribute("filter", "url(#shadow)");
+          
+          g.appendChild(circle);
+          svg.appendChild(g);
+        }
+      });
+
+      // Render text labels separately at the end to ensure they're on top
+      zOrdered.forEach(item => {
+        if (item.type === 'node') {
+          const { x, y, label, r, index } = item.p;
+          
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("class", "node-text");
+          text.setAttribute("x", x);
+          text.setAttribute("y", y - r - 5);
+          text.textContent = label;
+          text.setAttribute("data-node-index", index);
+          
+          // Show text if this node is hovered
+          if (index === hoveredNodeIndex) {
+            text.style.visibility = "visible";
+            text.style.zIndex = "1000";
+          }
+          
+          if (!item.isHighlighted) {
+            text.style.opacity = "0.2";
+          } else {
+            text.style.opacity = "1";
+          }
+          
+          svg.appendChild(text);
+        }
+      });
+
+      // Update node glow effects
+      nodes.forEach((n, i) => {
+        const progress = Math.max(0, Math.min(1, (n.glowUntil - Date.now()) / 400));
+        const brighten = Math.floor(progress * 50);
+        const baseColor = parseInt(n.originalFill.replace('#', ''), 16);
+        const r = Math.min(255, ((baseColor >> 16) & 0xff) + brighten);
+        const g = Math.min(255, ((baseColor >> 8) & 0xff) + brighten);
+        const b = Math.min(255, (baseColor & 0xff) + brighten);
+        n.fill = `rgb(${r},${g},${b})`;
+      });
+    }
+
+    function animate() {
+      updateGraph();
+      requestAnimationFrame(animate);
+    }
+
+    // Mouse event handlers
+    svg.addEventListener("mousedown", (e) => {
+      mouseDown = true;
+      userInteracting = true;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      e.preventDefault();
+    });
+
+    svg.addEventListener("mouseup", () => {
+      mouseDown = false;
+      userInteracting = false;
+      isStationary = false;
+    });
+
+    svg.addEventListener("mouseleave", () => {
+      mouseDown = false;
+      userInteracting = false;
+      hoveredNodeIndex = -1;
+      isStationary = false;
+    });
+
+    svg.addEventListener("mousemove", (e) => {
+      if (mouseDown) {
+        const dx = e.clientX - lastMouseX;
+        const dy = e.clientY - lastMouseY;
+        
+        rotationDeltaY = dx * 0.0010;
+        rotationDeltaX = dy * 0.0010;
+        
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        isStationary = false;
+      } else {
+        // Check for node hover
+        const hoveredElement = e.target.closest('.node');
+        if (hoveredElement) {
+          hoveredNodeIndex = parseInt(hoveredElement.getAttribute('data-node-index'));
+        } else {
+          hoveredNodeIndex = -1;
+        }
+      }
+    });
+
+    // Touch events for mobile support
+    svg.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        mouseDown = true;
+        userInteracting = true;
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+        e.preventDefault();
+      }
+    });
+
+    svg.addEventListener("touchend", () => {
+      mouseDown = false;
+      userInteracting = false;
+      hoveredNodeIndex = -1;
+      isStationary = false;
+    });
+
+    svg.addEventListener("touchmove", (e) => {
+      if (mouseDown && e.touches.length === 1) {
+        const dx = e.touches[0].clientX - lastMouseX;
+        const dy = e.touches[0].clientY - lastMouseY;
+        
+        rotationDeltaY = dx * 0.0010;
+        rotationDeltaX = dy * 0.0010;
+        
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+        isStationary = false;
+        e.preventDefault();
+      }
+    });
+
+    // Start the animation
+    updateGraph();
+    animate();
+  </script>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body        = document.body;
+    const prefersLight= window.matchMedia('(prefers-color-scheme: light)');
+    const twinkle     = document.getElementById('twinkling-stars');
+    const shooting    = document.getElementById('shooting-stars');
+
+    function applyTheme(theme) {
+      if (theme === 'light') body.dataset.theme = 'light';
+      else                  body.removeAttribute('data-theme');
+      localStorage.setItem('theme', theme);
+      manageTwinklingStars();
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = body.dataset.theme ? 'dark' : 'light';
+      applyTheme(next);
+    });
+    prefersLight.addEventListener('change', e => applyTheme(e.matches?'light':'dark'));
+    applyTheme(localStorage.getItem('theme') || (prefersLight.matches?'light':'dark'));
+
+    function createTwinklingStars(count) {
+      if (twinkle.children.length) return;
+      const frag = document.createDocumentFragment();
+      for (let i=0; i<count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random()*2 + 1;
+        star.style.width  = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top    = `${Math.random()*100}%`;
+        star.style.left   = `${Math.random()*100}%`;
+        star.style.animationDuration = `${(Math.random()*3+2).toFixed(2)}s`;
+        star.style.animationDelay    = `${(Math.random()*3).toFixed(2)}s`;
+        frag.appendChild(star);
+      }
+      twinkle.appendChild(frag);
+    }
+
+    function manageTwinklingStars() {
+      const dark = !body.dataset.theme || body.dataset.theme==='dark';
+      if (dark) createTwinklingStars(150);
+      else      twinkle.textContent = '';
+    }
+
+    function spawnShootingStar() {
+      const dark = !body.dataset.theme || body.dataset.theme==='dark';
+      if (!dark) { setTimeout(spawnShootingStar,8000); return; }
+      const s = document.createElement('div');
+      s.className = 'shooting-star';
+      const startX = Math.random()*window.innerWidth,
+            startY = -150,
+            endX   = Math.random()*window.innerWidth,
+            endY   = window.innerHeight+150;
+      const angle    = Math.atan2(endY-startY,endX-startX)*(180/Math.PI),
+            duration = Math.random()*2 +1;
+      s.style.setProperty('--angle', `${angle+90}deg`);
+      s.style.setProperty('--start-x', `${startX}px`);
+      s.style.setProperty('--start-y', `${startY}px`);
+      s.style.setProperty('--end-x',   `${endX}px`);
+      s.style.setProperty('--end-y',   `${endY}px`);
+      s.style.animationDuration = `${duration}s`;
+      shooting.appendChild(s);
+      setTimeout(()=>s.remove(), duration*1000);
+      setTimeout(spawnShootingStar, Math.random()*15000+5000);
+    }
+
+    spawnShootingStar();
+  </script>
+</body>
+</html>

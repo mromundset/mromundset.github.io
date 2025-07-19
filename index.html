@@ -4,421 +4,372 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcus Romundset</title>
-    <style>
-        body {
-            font-family:  Times New Roman, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            color: #000;
-            background-color: #f8f8f8;
-        }
-        .bio-link {
-            display: block; /* Ensures the link appears below the image */
-            margin-top: 10px; /* Adds space between the image and the link */
-            color: #3a7a3a; /* Slight green hue */
-            text-decoration: none; /* Removes underline */
-            font-size: 16px;
-            transition: color 0.3s, transform 0.3s;
-        }
-        .bio-link:hover {
-            color: #2e5b2e; /* Darker green on hover */
-            text-decoration: underline; /* Adds underline on hover */
-            transform: scale(1.05); /* Slightly enlarges on hover */
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0px;
-        }
-        .photo-column {
-            flex: 1;
-            min-width: 50px;
-            max-width: 400px;
-            text-align: center;
-        }
-        .photo-column img {
-            max-width: 90%;
-            height: 250px;
-            width: 250px;
-            border-radius: 0px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .info-column {
-            flex: 2;
-            min-width: 300px;
-            max-width: 700px;
-        }
-        header {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin: 0;
-            margin-bottom: 0px;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-top: 10px;
-            margin-bottom: 0px;
-        }
-        h3 {
-            font-size: 1.5em;
-            margin-top: 10px;
-            margin-bottom: 0px;
-            color: #003262;
-        }
-        h4 {
-            font-size: 1.2em;
-            margin-top: 0px;
-            margin-bottom: 0px;
-       }
-        ul {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-        p {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            text-align: center;
-            color: #666;
-        }
-        .left-aligned-section {
-            text-align: left; /* Left-aligns the section and its content */
-            margin-left: auto;
-            margin-right: auto;
-            min-width: 50px;
-            max-width: 245px;
-            margin-top: 10px;
-        }
-        .photo-text-container {
-            display: flex;
-            gap: 75px; /* Adds space between the image and text */
-            align-items: left; /* Vertically aligns the image and text */
-            margin-top: 0px; /* Adds spacing between the main section and the nested columns */
-        }
-        .entry {
-            display: flex;
-            align-items: center;
-            gap: 20px; /* Space between the image and text */
-            padding: 20px 0; /* Space around each entry */
-
-        }
-        .image-column img {
-            width: 160px; /* Set a fixed size for images */
-            height: 80px;
-            object-fit: contain; /* Ensures proper scaling */
-        }
-        .image-column2 img {
-            width: 300px; /* Set a fixed size for images */
-            height: 200px;
-            object-fit: contain; /* Ensures proper scaling */
-        }
-        .text-column {
-            flex: 1; /* Ensures the text takes up remaining space */
-            justify-content: space-evenly;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 0; /* No extra space around the line */
-            justify-content: space-evenly;
-        }
-        .coursework {
-            display: grid;
-            grid-template-columns: 1fr 3fr; /* 1 part for course names, 3 parts for descriptions */
-            gap: 10px; /* Adds spacing between the columns */
-            margin-top: 10px; /* Adds space above the coursework grid */
-        }
-        .course-name {
-            font-weight: bold;
-            text-align: right; /* Align course names to the right */
-            padding-right: 10px; /* Adds space between name and description */
-        }
-        .course-description {
-            text-align: left;
-        }
-        .course-name a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .course-name a:hover {
-            text-decoration: underline;
-        }
-        .competitions {
-            display: grid;
-            grid-template-columns: 1fr 3fr; /* 1 part for course names, 3 parts for descriptions */
-            gap: 10px; /* Adds spacing between the columns */
-            margin-top: 10px; /* Adds space above the coursework grid */
-        }
-        .comp-name {
-            font-weight: bold;
-            text-align: right; /* Align course names to the right */
-            padding-right: 10px; /* Adds space between name and description */
-        }
-        .comp-description {
-            text-align: left;
-        }
-        .comp-name a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .comp-name a:hover {
-            text-decoration: underline;
-        }
-        .c {
-            text-indent: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <noscript><style>#theme-toggle { display: none; }</style></noscript>
 </head>
 <body>
-
-<div class="container">
-    <!-- Column for the picture -->
-    <div class="photo-column">
-        <img src="Cover Picture 2024.jpg" alt="Emmanuel Saez Photo">
-        <a href="Biography.html" class="bio-link">Biography Page</a>
-        <a href="Romundset_Resume_2027.pdf" class="bio-link">Resume / CV</a>
-        <section class="left-aligned-section">
-            <h3>Awards & Recognition</h3>
-            <p>
-                <br>
-                <b><u>Case Competitions</b></u> <br/>
-                <b>Top 5</b>  &nbsp Planned Parenthood x 180 DC <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                (350+ participants)<br/>
-                <b>Top 8</b>  &nbsp PwC x Haas Business School<br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                (110+ participants) <br/>
-                <br/>
-                <b><u>Academic Awards:</b></u> <br/>
-                <b>Salutatorian SMHS</b> (Rank 2 / 35) <br/>
-                <b>AP Scholar with Distinction</b> (2x) <br/>
-                <b>SAT:</b> 1540 <br/>
-                <b>AP:</b> 10 x 5's.
-                <br/>
-                <br/>
-                <b><u>Athletic Awards:</b></u> <br/>
-                <b>Junior Club Champion</b> <br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspSalten Golf Club 2022 <br/>
-                <b>1st Place</b> <br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDivision III DoDEA Europe <br/>&nbsp &nbsp &nbsp &nbsp &nbsp &nbspSoccer Championships 2022<br/>
-                <b>3rd Place</b> <br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDoDEA Europe Golf <br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspChampionships 2021 <br/>
-                <b>All-European Team</b> <br/>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbspDoDEA Golf 2021 <br/>
-            </p>
-        </section>
-    </div>
-
-    <!-- Column for the name, title, and information -->
-    <div class="info-column">
-        <header>
-            <h1>Marcus Romundset</h1>
-            <h2>Computer Science B.A. &<br/> Business Administration B.S.
-            <br/>
-                <a href="https://www.berkeley.edu/" target="_blank" text-decoration="none">
-                    <img src="UC_SEAL.png" alt="UC Berkeley Seal" style="width:120px;height:120px">
-                </a>
-                <br/>University of California, Berkeley<h2/>
-        </header>
-
-        <section>
-            <h3>About</h3>
-            <p>Welcome to the personal website of Marcus Romundset. This page features relevant coursework plus additional links to
-            both technical and strategy projects I have done. If you wish to learn more about the non-professional
-            side of me, go to the Biography page, linked underneath the picture on the left. </p>
-        </section>
-
-        <section>
-            <h3>Professional Experience</h3>
+    <div id="twinkling-stars"></div>
+    <div id="shooting-stars"></div>
+    <header class="site-header">
+        <nav class="main-nav">
             <ul>
-                <br>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.nvidia.com/en-us/" target="_blank">
-                            <img src="Nvidia_logo.png" alt="NVIDIA Logo">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#coursework">Coursework</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="hero" class="hero">
+            <h1>Marcus Romundset</h1>
+            <h2>Computer Science & Economics at UC Berkeley</h2>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About</h2>
+            <p>Norwegian international student at UC Berkeley. Loves to solve interesting problems, both in business and technology. Interested in careers within product management or consulting. On the side, I love to play golf, soccer, cross-country ski, and hiking!</p>
+        </section>
+
+        <section id="experiences" class="experiences">
+            <h2>Highlighted Experiences</h2>
+            <div class="experience-list">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://dualog.com/" class="company-link" target="_blank" rel="noopener">
+                            Dualog
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">Product Management Intern</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Project Manager</h2>
-                        <p>January 2025 - Present</p>
+                    <div class="experience-details" id="details-1">
+                        <ul class="bullet-points">
+                            <li>Leading 5-intern team in developing AI features for Dualog Mail - a maritime software deployed on 5,000+ commercial vessels
+                                across 130 global fleets.</li>
+                            <li>Conducted stakeholder management with 11 $3B+ ship management clients for product iteration.</li>
+                            <li>Designed risk-assessment dashboard using deep-learning on ship-shore email traffic, reducing preventable delays by 28%.</li>
+                            <li>Identified a $5.6M under-served market using stakeholder interviews and feedback synthesis across 160+ unique insights.</li>
+                            <li>Projected $2.5M in payroll savings for on-shore ship-operators by creating embedded vector knowledge-bases for fleet traffic.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.jpmorganchase.com/" target="_blank">
-                            <img src="JP-Morgan-Chase-Logo.png" alt="JP Morgan Chase Logo">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://www.nvidia.com/en-us/" class="company-link" target="_blank" rel="noopener">
+                            NVIDIA
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">Project Manager - GPU Forecasting</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Business Analyst</h2>
-                        <p>August 2024 - December 2024</p>
+                    <div class="experience-details" id="details-2">
+                        <ul class="bullet-points">
+                            <li>Directed 8-person machine learning forecasting team tasked with improving NVIDIA’s Bayesian log-linear regression demand
+                            forecasting model. The project objective was to forecast 3-6 qtr. GPU demand, optimizing sales and supply-chain readiness.</li>
+                            <li>Feature-engineered forecasting model through 8 data-techniques such as RFS, PCA, lag-optimization, and interaction terms.</li>
+                            <li>Mobilized research on finding new covariate datasets, cleaning and testing 230+ unique features on GPU-demand impact.</li>
+                            <li>Quantified +$8.3M GPU revenue upside from +0.7% forecasting accuracy gain. Informed strategy on supply-chain ops.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.hyperspell.com/" target="_blank">
-                            <img src="03_22_2025_X-Design (1).png" alt="Hyperspell Logo">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://www.jpmorganchase.com/" class="company-link" target="_blank" rel="noopener">
+                            J.P. Morgan Chase
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">Business Analyst</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Business Strategy Advisor</h2>
-                        <p>January 2025 - Present</p>
+                    <div class="experience-details" id="details-2">
+                        <ul class="bullet-points">
+                            <li>Collaborated with The Western Regional Minority Supplier Development Council to present 50+ partnership opportunities to their Board of Directors</li>
+                            <li>Contributed to a 40% increase in the WRMSDC’s procurement catalog for corporate sponsors.</li>
+                            <li>Led analysis on diversity spend from 32 corporations, resolving regional gaps and increasing portfolio diversification by 24%.</li>
+                            <li>Developed automated corporate partner scoring frameworks across 6 KPIs, expediting supplier qualification cycles by 70%.</li>
+                            <li>Advised executives on supplier diversity investments, scaling strategic initiatives and influencing board-level DEI priorities.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.pepsico.com/" target="_blank">
-                            <img src="PepsiCo_logo.svg.png" alt="PepsiCo Logo">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://www.pepsico.com/" class="company-link" target="_blank" rel="noopener">
+                            PepsiCo
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">Business Analyst</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Corporate Strategy Consultant</h2>
-                        <p>February 2025 - Present</p>
+                    <div class="experience-details" id="details-2">
+                        <ul class="bullet-points">
+                            <li>Spearheaded advisory to enhance PepsiCo Food for Good’s operational efficiency in addressing food insecurity.</li>
+                            <li>Developed 12 KPIs to measure the scale and long-term impact of supply chain optimization, improving logistics and funding allocation.</li>
+                            <li>Implemented supply-chain forecasting to improve net volume of donated food by 12% and reduce delivery distance by 3%.</li>
+                            <li>Crafted a detailed budget allocation proposal with focus on minority impact, with predicted efficiency improvements of 8%.</li>
+                            <li>Designed stakeholder engagement framework increasing partner retention by 35% and demonstrating 3:1 social impact ROI.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.berkeley.edu/research/" target="_blank">
-                            <img src="Berkeley%20Logo%20UC.png" alt="UC Berkeley Logo">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://www.hyperspell.com/" class="company-link" target="_blank" rel="noopener">
+                            Hyperspell
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">Strategic Growth Lead</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Technical Researcher</h2>
-                        <p>January 2024 - Present</p>
+                    <div class="experience-details" id="details-2">
+                        <ul class="bullet-points">
+                            <li>Leading growth and product strategy on Retrieval-Augmented Generation (RAG) B2B startup valued at $20M.</li>
+                            <li>Worked on competitor research, product market fit, product pricing, customer acquisition, revenue modeling, and growth initiatives.</li>
+                            <li>Assessed market positioning of 26 competitors, implementing product re-alignments improving customer acquisition by 35%.</li>
+                            <li>Executed 3-tier pricing model for SaaS product, increasing quarterly upsell conversions by 30% and decreasing 55% of churn.</li>
+                            <li>Facilitated $1.2M pre-seed funding by creating pitch decks and leading investor calls, achieving a 40% VC conversion rate.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.tona.ai/" target="_blank">
-                            <img src="Tona.ai%20Logo.png" alt="Tona.ai Logo">
+                <div class="experience-item dropdown-container">
+                    <div class="experience-header">
+                        <a href="https://www.diversatech.org/" class="company-link" target="_blank" rel="noopener">
+                            DiversaTech Consulting
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
+                        <span class="job-title">President</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
                     </div>
-                    <div class="text-column">
-                        <h2>Head of Strategic Finance</h2>
-                        <p>May 2024 - Present</p>
+                    <div class="experience-details" id="details-2">
+                        <ul class="bullet-points">
+                            <li>Led diversity-focused NGO tech-consultancy serving 60+, including Google, LinkedIn, Microsoft, and PayPal. Managed
+                            45-member team and scaled campus outreach to 1,700+ students through 25+ workshops, panels, and recruiting events.</li>
+                            <li>Rationalized new executive position of VP of Inclusion, intending to increase minority outreach. Exceeded recruitment goals,
+                            with a 180% increase in underrepresented minority applications and 230% increase in minority first-round interview makeup.</li>
+                            <li>Negotiated $80,000+ in funding for strategy, technical, and design projects, contributing to a 40% increase in YoY budget.</li>
+                            <li>Spearheaded a $5,000 scholarship fund distributed to 10 local high-school students from underrepresented backgrounds.</li>
+                        </ul>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.diversatech.org/" target="_blank">
-                            <img src="file.png" style="height:80px;with:80px" alt="UC Berkeley Logo">
+                
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>
+                        <a href="project1.html">
+                            Knowledge-Graph Visualization
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                         </a>
-                    </div>
-                    <div class="text-column">
-                        <h2>Project Manager</h2>
-                        <p>Dec 2024 - Present</p>
+                    </h3>
+                    <p class="project-overview">Visualization of the composition of knowledge graphs. Made as a sideproject to better learn physics mechanics in dynamic front-end displays.</p>
+                    <div class="technologies">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        <span>JavaScript, HTML, CSS</span>
                     </div>
                 </div>
-                <hr>
-                <div class="entry">
-                    <div class="image-column">
-                        <a href="https://www.rema.no/" target="_blank">
-                            <img src="Rema1000.png" alt="UC Berkeley Logo">
-                        </a>
-                    </div>
-                    <div class="text-column">
-                        <h2>Department Manager</h2>
-                        <p>August 2022 - July 2023</p>
-                    </div>
-                </div>
-                <hr>
+            </div>
+        </section>
+
+        <section id="coursework" class="coursework">
+            <h2>Coursework</h2>
+            <ul class="courses">
+                <li><span><b>CS 170</b>&nbsp;—&nbsp;Efficient Algorithms</span></li>
+                <li><span><b>CS 161</b>&nbsp;—&nbsp;Computer Security</span></li>
+                <li><span><b>CS 70</b>&nbsp;—&nbsp;Discrete Math &amp; Probability Theory</span></li>
+                <li><span><b>CS 61A</b>&nbsp;—&nbsp;Structure &amp; Interpretation of Computer Programs</span></li>
+                <li><span><b>CS 61B</b>&nbsp;—&nbsp;Data Structures</span></li>
+                <li><span><b>CS 61C</b>&nbsp;—&nbsp;Machine Arcitecture</span></li>
+                <li><span><b>EECS 16A</b>&nbsp;—&nbsp;Linear Algebra</span></li>
+                <li><span><b>DATA 8</b>&nbsp;—&nbsp;Foundations of Data Science</span></li>
+                <li><span><b>ECON 2</b>&nbsp;—&nbsp;Introduction to Economics (Honors)</span></li>
+                <li><span><b>UGBA 88</b>&nbsp;—&nbsp;Data and Decisions </span></li>
+                <li><span><b>UGBA 10</b>&nbsp;—&nbsp;Introduction to Business</span></li>
             </ul>
         </section>
 
-        <section id="media">
-            <h3>In the Media</h3>
-                <h4><br/>"The Flavor Networks Project and One Of The Students
-                Tracking Scandinavian Cuisine With Data Science"</h4>
-                <p>Interview perfromed by University of California, Berkeley newsletter regarding work on technical
-                research. Discussed the importance of exploring fields outside your major,
-                    the value of interacting with faculty here at Berkeley, and the surprising
-                    nuances between STEM and the Arts and Humanities.</p>
-            <div class="image-column2">
-                <a href="https://artshumanities.berkeley.edu/news/flavor-network-project-and-one-students-tracking-scandinavian-cuisine-data-science" target="_blank">
-                    <img src="BerkeleyArticle.png" alt="UC Berkeley Logo">
-                </a>
-                <!-- More articles as needed -->
-            </div>
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <a href="mailto:mromundset@berkeley.edu" class="email-link">mromundset (at) berkeley (dot) edu</a>
         </section>
+    </main>
 
-        <section>
-            <h3>Relevant Coursework</h3>
-            <div class="coursework">
-                <div class="course-name">
-                    <a href="https://www2.eecs.berkeley.edu/Courses/CS70/" target="_blank">CS 70</a>
-                </div>
-                <div class="course-description">Discrete Mathematics & Probability Theory</div>
-                <div class="course-name">
-                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61C/" target="_blank">CS 61c</a>
-                </div>
-                <div class="course-description">Great Ideas in Computer Architecture (Machine Structures)</div>
-                <div class="course-name">
-                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61B/" target="_blank">CS 61b</a>
-                </div>
-                <div class="course-description">Data Structures</div>
-                <div class="course-name">
-                    <a href="https://www2.eecs.berkeley.edu/Courses/CS61A/" target="_blank">CS 61a</a>
-                </div>
-                <div class="course-description">Structure and Interpretation of Computer Programs</div>
-                <div class="course-name">
-                    <a href="https://www2.eecs.berkeley.edu/Courses/EECS16A/" target="_blank">EECS 16a</a>
-                </div>
-                <div class="course-description">Designing Information Devices and Systems</div>
-                <div class="course-name">
-                    <a href="https://math.berkeley.edu/courses/overview/lowerdivcourses/math53" target="_blank">Math 53</a>
-                </div>
-                <div class="course-description">Multivariable Calculus</div>
-                <div class="course-name">
-                    <a href="https://math.berkeley.edu/courses/overview/lowerdivcourses/math1B" target="_blank">Math 1b</a>
-                </div>
-                <div class="course-description">Calculus 2</div>
-                <div class="course-name">
-                    <a href="https://classes.berkeley.edu/content/2024-spring-econ-2-001-lec-001" target="_blank">Econ 2</a>
-                </div>
-                <div class="course-description">Introduction to Economics (Advanced)</div>
-                <div class="course-name">
-                    <a href="https://classes.berkeley.edu/content/2024-fall-ugba-88-001-lec-001" target="_blank">UGBA 88</a>
-                </div>
-                <div class="course-description">Data and Decisions</div>
-                <div class="course-name">
-                    <a href="https://classes.berkeley.edu/content/2024-fall-ugba-10x-001-lec-001" target="_blank">UGBA 10X</a>
-                </div>
-                <div class="course-description">Introduction to Business</div>
-            </div>
-        </section>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        const twinklingStarsContainer = document.getElementById('twinkling-stars');
+        const shootingStarsContainer = document.getElementById('shooting-stars');
 
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                body.dataset.theme = 'light';
+            } else {
+                body.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+            manageTwinklingStars(); // integrate here
+        }
 
-        <section>
-            <h3>Contact</h3>
-            <p>mromundset@berkeley.edu</p>
-        </section>
-    </div>
-</div>
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.dataset.theme ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
 
-<div class="footer">
-    <p>&copy; 2025 Marcus Romundset. All rights reserved.</p>
-</div>
+        prefersLight.addEventListener('change', (e) => {
+            applyTheme(e.matches ? 'light' : 'dark');
+        });
 
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersLight.matches ? 'light' : 'dark');
+        }
+
+        /* ---------- STAR FIELD ---------- */
+        function createTwinklingStars(count) {
+            // Only create once
+            if (twinklingStarsContainer.children.length > 0) return;
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const size = Math.random() * 2 + 1;
+                star.className = 'star';
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${(Math.random() * 3 + 2).toFixed(2)}s`;
+                star.style.animationDelay = `${(Math.random() * 3).toFixed(2)}s`;
+                frag.appendChild(star);
+            }
+            twinklingStarsContainer.appendChild(frag);
+        }
+
+        function manageTwinklingStars() {
+            const darkModeActive = !body.dataset.theme || body.dataset.theme === 'dark';
+            if (darkModeActive) {
+                createTwinklingStars(150);
+            } else {
+                twinklingStarsContainer.textContent = '';
+            }
+        }
+
+        function spawnShootingStar() {
+            const darkModeActive = !body.dataset.theme || body.dataset.theme === 'dark';
+            if (!darkModeActive) {
+                setTimeout(spawnShootingStar, 4000);
+                return;
+            }
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            const startX = Math.random() * window.innerWidth;
+            const startY = -150;
+            const endX = Math.random() * window.innerWidth;
+            const endY = window.innerHeight + 150;
+            const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+            const duration = Math.random() * 2 + 1;
+
+            star.style.setProperty('--angle', `${angle + 90}deg`);
+            star.style.setProperty('--start-x', `${startX}px`);
+            star.style.setProperty('--start-y', `${startY}px`);
+            star.style.setProperty('--end-x', `${endX}px`);
+            star.style.setProperty('--end-y', `${endY}px`);
+            star.style.animationDuration = `${duration}s`;
+
+            shootingStarsContainer.appendChild(star);
+            setTimeout(() => star.remove(), duration * 1000);
+
+            const randomInterval = Math.random() * 15000 + 5000; // 5–20s
+            setTimeout(spawnShootingStar, randomInterval);
+        }
+        spawnShootingStar();
+
+        /* ---------- DROPDOWN LOGIC (Simplified) ---------- */
+
+        function togglePanel(button) {
+            const isTopLevel = !!button.closest('.experience-header');
+            let contentElement;
+            if (isTopLevel) {
+                contentElement = button.closest('.experience-header').nextElementSibling;
+            } else {
+                contentElement = button.nextElementSibling;
+            }
+            if (!contentElement) return;
+
+            const expanded = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', String(!expanded));
+            button.classList.toggle('expanded', !expanded); // rotate icon via CSS
+
+            if (!expanded) {
+                // EXPAND
+                contentElement.style.maxHeight = 'none'; // reset to measure
+                const full = contentElement.scrollHeight;
+                contentElement.style.maxHeight = '0px';
+                // force reflow
+                contentElement.offsetHeight;
+                contentElement.style.maxHeight = full + 'px';
+                adjustAncestorHeights(contentElement);
+            } else {
+                // COLLAPSE
+                const current = contentElement.scrollHeight;
+                contentElement.style.maxHeight = current + 'px';
+                requestAnimationFrame(() => {
+                    contentElement.style.maxHeight = '0px';
+                    adjustAncestorHeights(contentElement);
+                });
+            }
+        }
+
+        function adjustAncestorHeights(el) {
+            // Walk up and expand heights of any open ancestor panels
+            let ancestor = el.parentElement.closest('.experience-details');
+            while (ancestor) {
+                if (ancestor.style.maxHeight && ancestor.style.maxHeight !== '0px') {
+                    ancestor.style.maxHeight = 'none';
+                    const h = ancestor.scrollHeight;
+                    ancestor.style.maxHeight = h + 'px';
+                }
+                ancestor = ancestor.parentElement.closest('.experience-details');
+            }
+        }
+
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => togglePanel(btn));
+        });
+
+        // INITIAL state: ensure all panels collapsed
+        document.querySelectorAll('.experience-details').forEach(p => {
+            p.style.maxHeight = '0px';
+            p.style.overflow = 'hidden';
+            p.style.transition = 'max-height 0.4s ease';
+        });
+
+    </script>
 </body>
 </html>
