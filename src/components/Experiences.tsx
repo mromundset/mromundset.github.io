@@ -39,7 +39,7 @@ const workExperiences: Experience[] = [
     company: 'Dualog',
     role: 'Product - AI Solutions',
     year: '2025',
-    logo: '/public/logos/dualog.jpg',
+    logo: '/logos/dualog.jpg',
     link: 'https://dualog.com/',
   },
   {
