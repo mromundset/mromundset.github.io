@@ -415,7 +415,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'me', 
     label: 'Me [casual]', 
-    image: '/images/resturant_pic_marcus.JPG',
+    image: '/images/resturant_pic_marcus.jpg',
     description: "Norwegian at heart, but love trying new foods from around the world. California is the perfect place to explore new cuisines and cultures!",
     ascii: meAscii,
     caption: "[ San Diego, 2025 ]"
@@ -423,7 +423,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'golf', 
     label: 'Golf [1]', 
-    image: '/images/golf.JPG',
+    image: '/images/golf.jpg',
     description: "Currently playing on the Cal Club Golf Team. Golf is the perfect way to disconnect from the busy day-to-day life and focus on whats impportant: reducing my handicap!",
     ascii: golfingAscii,
     caption: "[ Berkeley Country Club, 2024 ]"
@@ -431,7 +431,7 @@ const primaryTabs: Tab[] = [
   {
     id: 'golf_2',
     label: 'Golf [2]',
-    image: '/images/golf_2.JPG',
+    image: '/images/golf_2.jpg',
     description: "Capturing moments and perspectives. I love the technical and artistic blend of photography.",
     ascii: golf_2_ascii,
     caption: "[ Poppy Hills, 2024 ]"
@@ -439,7 +439,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'hiking', 
     label: 'Hiking', 
-    image: '/images/mountain.JPG',
+    image: '/images/mountain.jpg',
     description: "Norwegian mountains are some of the most beautiful in the world. I love to hike and explore the trails, and the feeling of being in the middle of nowhere is truly special.",
     ascii: mountainAscii,
     caption: "[ Norway, 2024 ]"
@@ -458,7 +458,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'skiing', 
     label: 'X-Country Skiing', 
-    image: '/images/skiing.JPG',
+    image: '/images/skiing.jpg',
     description: "Clearing my mind on the trails. Running is my meditation and a way to explore new cities.",
     ascii: skiingAscii,
     caption: "[ Norway, 2023 ]"
@@ -474,7 +474,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'frenchie', 
     label: 'French Bulldog', 
-    image: '/images/fransesco.JPG',
+    image: '/images/fransesco.jpg',
     description: "Finding rhythm in code and life. I enjoy discovering new genres and attending live concerts.",
     ascii: frenchieAscii,
     caption: "[ Fransesco (my frenchie), 2024 ]"
