@@ -415,7 +415,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'me', 
     label: 'Me [casual]', 
-    image: 'public/images/resturant_pic_marcus.JPG',
+    image: '/images/resturant_pic_marcus.JPG',
     description: "Norwegian at heart, but love trying new foods from around the world. California is the perfect place to explore new cuisines and cultures!",
     ascii: meAscii,
     caption: "[ San Diego, 2025 ]"
