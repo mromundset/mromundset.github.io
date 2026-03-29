@@ -15,7 +15,7 @@ const workExperiences: Experience[] = [
     company: 'Norges Bank Investment Management',
     role: '[Incoming] Finance',
     year: '2026',
-    logo: '/public/logos/nbim_logo.jpg',
+    logo: '/logos/nbim_logo.jpg',
     link: 'https://www.nbim.no/',
   },
   {
@@ -23,7 +23,7 @@ const workExperiences: Experience[] = [
     company: 'Nording & Partners',
     role: 'Management Consulting',
     year: '2026',
-    logo: '/public/logos/n_and_p.jpg',
+    logo: '/logos/n_and_p.jpg',
     link: 'https://www.nordingpartners.no/',
   },
   {
@@ -31,7 +31,7 @@ const workExperiences: Experience[] = [
     company: 'Hyperspell',
     role: 'Product',
     year: '2025',
-    logo: '/public/logos/hyperspell_logo.jpg',
+    logo: '/logos/hyperspell_logo.jpg',
     link: 'https://www.hyperspell.com/',
   },
   {
@@ -47,7 +47,7 @@ const workExperiences: Experience[] = [
     company: 'NVIDIA',
     role: 'Product - Sales Forecasting',
     year: '2025',
-    logo: '/public/logos/nvidia.jpg',
+    logo: '/logos/nvidia.jpg',
     link: 'https://www.nvidia.com/en-us/',
   },
   {
@@ -55,7 +55,7 @@ const workExperiences: Experience[] = [
     company: 'J.P. Morgan Chase',
     role: 'Corporate Strategy',
     year: '2024',
-    logo: '/public/logos/jpmc.jpg',
+    logo: '/logos/jpmc.jpg',
     link: 'https://www.jpmorganchase.com/',
   },
   {
@@ -63,7 +63,7 @@ const workExperiences: Experience[] = [
     company: 'Tona.ai',
     role: 'Strategy',
     year: '2023',
-    logo: '/public/logos/tona.jpg',
+    logo: '/logos/tona.jpg',
     link: 'https://www.linkedin.com/company/tona-ai/',
   },
   {
@@ -71,7 +71,7 @@ const workExperiences: Experience[] = [
     company: 'SoFi',
     role: 'Engineering',
     year: '2023',
-    logo: '/public/logos/sofi.jpg',
+    logo: '/logos/sofi.jpg',
     link: 'https://www.sofi.com/',
   },
 ];
@@ -82,7 +82,7 @@ const involvements: Experience[] = [
     company: 'DiversaTech Consulting',
     role: 'President',
     year: '2024 - Present',
-    logo: '/public/logos/diversatech.jpg',
+    logo: '/logos/diversatech.jpg',
     link: 'https://www.diversatech.org/',
   },
   {
@@ -90,7 +90,7 @@ const involvements: Experience[] = [
     company: 'UC Berkeley',
     role: 'AI Research',
     year: '2023 - Present',
-    logo: '/public/logos/berkeley.jpg',
+    logo: '/logos/berkeley.jpg',
     link: 'https://www.berkeley.edu/',
   },
   {
@@ -98,7 +98,7 @@ const involvements: Experience[] = [
     company: 'Cal Club Golf Team',
     role: 'Team Captain',
     year: '2024 - Present',
-    logo: '/public/logos/cal.png',
+    logo: '/logos/cal.png',
     link: 'https://recwell.berkeley.edu/competitive-programs/sport-clubs/golf-co-ed/',
   },
 ];

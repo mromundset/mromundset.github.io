@@ -415,7 +415,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'me', 
     label: 'Me [casual]', 
-    image: 'public/images/resturant_pic_marcus.JPG',
+    image: '/images/resturant_pic_marcus.JPG',
     description: "Norwegian at heart, but love trying new foods from around the world. California is the perfect place to explore new cuisines and cultures!",
     ascii: meAscii,
     caption: "[ San Diego, 2025 ]"
@@ -423,7 +423,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'golf', 
     label: 'Golf [1]', 
-    image: 'public/images/golf.JPG',
+    image: '/images/golf.JPG',
     description: "Currently playing on the Cal Club Golf Team. Golf is the perfect way to disconnect from the busy day-to-day life and focus on whats impportant: reducing my handicap!",
     ascii: golfingAscii,
     caption: "[ Berkeley Country Club, 2024 ]"
@@ -431,7 +431,7 @@ const primaryTabs: Tab[] = [
   {
     id: 'golf_2',
     label: 'Golf [2]',
-    image: 'public/images/golf_2.JPG',
+    image: '/images/golf_2.JPG',
     description: "Capturing moments and perspectives. I love the technical and artistic blend of photography.",
     ascii: golf_2_ascii,
     caption: "[ Poppy Hills, 2024 ]"
@@ -439,7 +439,7 @@ const primaryTabs: Tab[] = [
   { 
     id: 'hiking', 
     label: 'Hiking', 
-    image: 'public/images/mountain.JPG',
+    image: '/images/mountain.JPG',
     description: "Norwegian mountains are some of the most beautiful in the world. I love to hike and explore the trails, and the feeling of being in the middle of nowhere is truly special.",
     ascii: mountainAscii,
     caption: "[ Norway, 2024 ]"
@@ -450,7 +450,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'professional', 
     label: 'Me [professional]', 
-    image: 'public/images/professional_headshot.jpg',
+    image: '/images/professional_headshot.jpg',
     description: "Exploring from fjords to Californian trails. I'm always looking for the next great view and cultural experience.",
     ascii: professionalAscii,
     caption: "[ Berkeley, 2025 ]"
@@ -458,7 +458,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'skiing', 
     label: 'X-Country Skiing', 
-    image: 'public/images/skiing.JPG',
+    image: '/images/skiing.JPG',
     description: "Clearing my mind on the trails. Running is my meditation and a way to explore new cities.",
     ascii: skiingAscii,
     caption: "[ Norway, 2023 ]"
@@ -466,7 +466,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'soccer', 
     label: 'Soccer / Football', 
-    image: 'public/images/liverpool.jpg',
+    image: '/images/liverpool.jpg',
     description: "Curious about everything from economics to philosophy. Currently reading 'The Black Swan' by Nassim Taleb.",
     ascii: liverpoolascii,
     caption: "[ Liverpool, 2023 ]"
@@ -474,7 +474,7 @@ const secondaryTabs: Tab[] = [
   { 
     id: 'frenchie', 
     label: 'French Bulldog', 
-    image: 'public/images/fransesco.JPG',
+    image: '/images/fransesco.JPG',
     description: "Finding rhythm in code and life. I enjoy discovering new genres and attending live concerts.",
     ascii: frenchieAscii,
     caption: "[ Fransesco (my frenchie), 2024 ]"
