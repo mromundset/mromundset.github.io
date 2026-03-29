@@ -571,7 +571,7 @@ const About: React.FC = () => {
           </a>
           . <br /> Check out my{' '}
           <a
-            href="\public\M_Romundset_Resume_2026.pdf"
+            href="\M_Romundset_Resume_2026.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="underline !bg-none"
