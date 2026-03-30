@@ -27,6 +27,14 @@ const workExperiences: Experience[] = [
     link: 'https://www.nordingpartners.no/',
   },
   {
+    id: 'proxima',
+    company: 'Proxima',
+    role: 'AI Product',
+    year: '2025',
+    logo: '/logos/proxima.png',
+    link: 'https://www.proxima.ai/',
+  },
+  {
     id: 'hyperspell',
     company: 'Hyperspell',
     role: 'Product',
