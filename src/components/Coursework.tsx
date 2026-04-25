@@ -28,8 +28,10 @@ const courseData: CourseData = {
   Econ: [
     { code: 'ECON 155', title: 'Urban Economics' },
     { code: 'ECON 140', title: 'Econometrics' },
+    { code: 'ECON 139', title: 'Asset Pricing & Portfolio Theory' },
     { code: 'ECON 136', title: 'Financial Economics' },
     { code: 'ECON 101B', title: 'Macroeconomics (Quantitative)' },
+    { code: 'ECON 100A', title: 'Microeconomics' },
     { code: 'ECON 2', title: 'Introduction to Economics (Quantitative)' },
   ],
   Math: [
@@ -38,10 +40,11 @@ const courseData: CourseData = {
     { code: 'EECS 16A', title: 'Linear Algebra' },
   ],
   Other: [
+    { code: 'DATA C100', title: 'Foundations of Data Science' },
+    { code: 'DATA 8', title: 'Foundations of Data Science' },
+    { code: 'STAT 20', title: 'Introduction to Statistics' },
     { code: 'UGBA 88', title: 'Data and Decisions' },
     { code: 'UGBA 10', title: 'Introduction to Business' },
-    { code: 'STAT 20', title: 'Introduction to Statistics' },
-    { code: 'DATA 8', title: 'Foundations of Data Science' },
   ],
 };
 

@@ -19,6 +19,14 @@ const workExperiences: Experience[] = [
     link: 'https://www.nbim.no/',
   },
   {
+    id: 'dualog_2',
+    company: 'Dualog',
+    role: 'Advisor',
+    year: '2026',
+    logo: '/logos/dualog.jpg',
+    link: 'https://dualog.com/',
+  },
+  {
     id: 'n_and_p',
     company: 'Nording & Partners',
     role: 'Management Consulting',
