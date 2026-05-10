@@ -40,7 +40,7 @@ const courseData: CourseData = {
     { code: 'EECS 16A', title: 'Linear Algebra' },
   ],
   Other: [
-    { code: 'DATA C100', title: 'Foundations of Data Science' },
+    { code: 'DATA C100', title: 'Principles & Techniques of Data Science' },
     { code: 'DATA 8', title: 'Foundations of Data Science' },
     { code: 'STAT 20', title: 'Introduction to Statistics' },
     { code: 'UGBA 88', title: 'Data and Decisions' },
