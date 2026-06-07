@@ -16,6 +16,7 @@ interface CourseData {
 // Course data organized by category
 const courseData: CourseData = {
   CS: [
+    { code: 'CS 189', title: 'Introduction to Machine Learning' },
     { code: 'CS 188', title: 'Introduction to Artificial Intelligence' },
     { code: 'CS 186', title: 'Introduction to Database Systems' },
     { code: 'CS 170', title: 'Efficient Algorithms' },
@@ -36,7 +37,7 @@ const courseData: CourseData = {
   ],
   Math: [
     { code: 'MATH 53', title: 'Multivariable Calculus' },
-    { code: 'MATH 1B', title: 'Single Variable Calculus 2' },
+    { code: 'MATH 52', title: 'Single Variable Calculus 2' },
     { code: 'EECS 16A', title: 'Linear Algebra' },
   ],
   Other: [
