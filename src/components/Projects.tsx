@@ -24,6 +24,13 @@ const projects: Project[] = [
     link: 'https://github.com/mromundset/nbim_us_stock_eval'
   },
   {
+    id: 'wc2026-arbitrage-exploration',
+    title: '2026 World Cup Arbitrage Exploration',
+    description: 'Exploration of arbitrage opportunities on prediction market betting of 2026 Fifa World Cup matches. Used fundamental dependent statistical methods.',
+    technologies: 'Python, Numpy, scikit-learn',
+    link: 'https://github.com/mromundset/wc2026_arbitrage_exploration'
+  },
+  {
     id: 'crewly-cms',
     title: 'Crewly CMS',
     description: 'Hackathon project to showcase proof-of-concept of a modular Crew Management System. Primary focus was for ease of use for small shipping operators ( < 5 vessels). Made from scratch in 3 days.',
