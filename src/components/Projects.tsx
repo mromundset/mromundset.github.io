@@ -44,13 +44,6 @@ const projects: Project[] = [
     technologies: 'Python, BeautifulSoup',
     link: 'https://github.com/mromundset/Linkedin_Scraper'
   },
-  {
-    id: 'knowledge-graph',
-    title: 'Knowledge-Graph Visualization',
-    description: 'Visualization of the composition of knowledge graphs. Made as a sideproject to better learn physics mechanics in dynamic front-end displays.',
-    technologies: 'JavaScript, HTML, CSS',
-    link: '/project1.html'
-  }
 ];
 
 const Projects: React.FC = () => {

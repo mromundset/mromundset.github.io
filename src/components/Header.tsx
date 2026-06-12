@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
         }
       }
 
-      const sections = ['about', 'experiences', 'projects', 'coursework'];
+      const sections = ['about', 'experiences', 'projects', 'media', 'coursework'];
       let currentSection = 'about';
 
       for (const section of sections) {
@@ -42,8 +42,9 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
 
   const navLinks = [
     { id: 'about', label: 'About' },
-    { id: 'experiences', label: 'Experiences' },
+    { id: 'experiences', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'media', label: 'Featured' },
     { id: 'coursework', label: 'Coursework' },
     { id: 'contact', label: 'Contact' }
   ];

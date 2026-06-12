@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experiences from './components/Experiences';
 import Projects from './components/Projects';
+import Media from './components/Media';
 import Coursework from './components/Coursework';
 import Contact from './components/Contact';
 import './index.css';
@@ -178,6 +179,8 @@ const App: React.FC = () => {
         <Experiences />
 
         <Projects />
+
+        <Media />
 
         <Coursework />
 
