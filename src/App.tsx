@@ -178,9 +178,9 @@ const App: React.FC = () => {
 
         <Experiences />
 
-        <Projects />
-
         <Media />
+
+        <Projects />
 
         <Coursework />
 

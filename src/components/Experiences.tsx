@@ -124,32 +124,32 @@ const ExperienceRow: React.FC<{ exp: Experience }> = ({ exp }) => (
     className="flex items-center py-4 px-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
   >
     {/* Logo */}
-    <div className="w-12 h-12 flex-shrink-0 mr-4">
-      <img 
-        src={exp.logo} 
+    <div className="w-12 h-12 max-md:w-10 max-md:h-10 flex-shrink-0 mr-4 max-md:mr-3">
+      <img
+        src={exp.logo}
         alt={`${exp.company} logo`}
         className="w-full h-full object-contain rounded"
       />
     </div>
-    
-    {/* Company and Role on same line */}
-    <div className="flex-grow min-w-0 flex items-baseline gap-3">
-      <a 
+
+    {/* Company and Role on same line (stacked on mobile) */}
+    <div className="flex-grow min-w-0 flex items-baseline gap-3 max-md:flex-col max-md:items-stretch max-md:gap-0.5">
+      <a
         href={exp.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-lg font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors !bg-none flex-shrink-0"
+        className="text-lg max-md:text-base font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors !bg-none flex-shrink-0"
       >
         {exp.company}
       </a>
-      <span className="text-lg text-gray-600 dark:text-gray-400 truncate">
+      <span className="text-lg max-md:text-sm text-gray-600 dark:text-gray-400 truncate max-md:whitespace-normal">
         {exp.role}
       </span>
     </div>
-    
+
     {/* Year */}
-    <div className="flex-shrink-0 ml-4">
-      <span className="text-lg text-gray-500 dark:text-gray-400">
+    <div className="flex-shrink-0 ml-4 max-md:ml-2">
+      <span className="text-lg max-md:text-sm text-gray-500 dark:text-gray-400">
         {exp.year}
       </span>
     </div>

@@ -635,8 +635,8 @@ const About: React.FC = () => {
 
         {/* Column 3: The Viewport */}
         <div className="md:col-span-6 relative w-full h-full flex flex-col justify-end">
-          <div 
-            className="aspect-[3/4] w-3/4 ml-auto rounded-md overflow-hidden relative bg-gray-100 dark:bg-gray-900"
+          <div
+            className="aspect-[3/4] w-3/4 ml-auto max-md:mx-auto rounded-md overflow-hidden relative bg-gray-100 dark:bg-gray-900"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
@@ -660,7 +660,7 @@ const About: React.FC = () => {
           </div>
 
           {/* NEW CAPTION */}
-          <p className="font-mono text-sm text-gray-500 dark:text-gray-400 mt-3 text-right w-3/4 ml-auto tracking-wide">
+          <p className="font-mono text-sm text-gray-500 dark:text-gray-400 mt-3 text-right w-3/4 ml-auto max-md:mx-auto tracking-wide">
             {currentTab.caption}
           </p>
         </div>
