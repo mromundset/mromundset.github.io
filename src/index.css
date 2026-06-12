@@ -33,6 +33,14 @@ html {
     zoom: 0.8;
 }
 
+/* Mobile: scale everything down so text/UI isn't oversized.
+   Scoped to < md (768px) so desktop/laptop is unchanged. */
+@media (max-width: 767px) {
+    html {
+        zoom: 0.55;
+    }
+}
+
 body {
     background-color: var(--clr-bg);
     color: var(--clr-text);
