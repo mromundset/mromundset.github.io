@@ -24,7 +24,7 @@ const courseData: CourseData = {
     { code: 'CS 70', title: 'Discrete Math & Probability' },
     { code: 'CS 61C', title: 'Machine Architecture' },
     { code: 'CS 61B', title: 'Data Structures' },
-    { code: 'CS 61A', title: 'Structure & Interpretation' },
+    { code: 'CS 61A', title: 'Structure & Interpretation of Computer Programs' },
   ],
   Econ: [
     { code: 'ECON 155', title: 'Urban Economics' },
