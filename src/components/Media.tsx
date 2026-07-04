@@ -35,7 +35,7 @@ const mediaItems: MediaItem[] = [
     outlet: 'Daily Cal - Breaking down the $1.2 million in UC Berkeley student organization funds',
     description: 'Interviewed as part of being the President of DiversaTech. Spoke on student-organization funding disclosure.',
     logo: '/logos/daily_cal_logo.png',
-    link: 'https://data.dailycal.org/2026-01-06-asucspending',
+    link: 'https://data.dailycal.org/2026-01-06-asucspending#:~:text=DiversaTech%20president%20Marcus%20Romundset',
   },
   {
     id: 'cal_admissions',
