@@ -13,7 +13,7 @@ const workExperiences: Experience[] = [
   {
     id: 'nbim',
     company: 'Norges Bank Investment Management',
-    role: '[Incoming] Finance',
+    role: 'Finance - Quantitative Valuations',
     year: '2026',
     logo: '/logos/nbim_logo.jpg',
     link: 'https://www.nbim.no/',
