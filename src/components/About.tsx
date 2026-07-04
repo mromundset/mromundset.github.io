@@ -416,7 +416,7 @@ const primaryTabs: Tab[] = [
     id: 'me', 
     label: 'Me [casual]', 
     image: '/images/resturant_pic_marcus.jpg',
-    description: "I love exploring culture and food from all corners of the world. The image to the right is from a Japanese resturant in Southern California. My favorite cousine is Korean Food!",
+    description: "I love exploring culture and food from all corners of the world. The image to the right is from a Japanese resturant in Southern California. My favorite cuisine is Korean food!",
     ascii: meAscii,
     caption: "[ San Diego, 2025 ]"
   },
