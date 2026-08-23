@@ -518,9 +518,9 @@ const TypewriterText: React.FC<{ text: string }> = ({ text }) => {
   }, [displayedText, isDeleting, targetText, text]);
 
   return (
-    <p className="text-lg font-medium text-gray-400 min-h-[3em] leading-relaxed transition-colors duration-300">
+    <p className="text-lg font-medium text-gray-500 dark:text-gray-400 min-h-[3em] leading-relaxed transition-colors duration-300">
       {displayedText}
-      <span className="animate-pulse text-gray-400">|</span>
+      <span className="animate-pulse text-gray-500 dark:text-gray-400">|</span>
     </p>
   );
 };
@@ -542,7 +542,7 @@ const About: React.FC = () => {
       className={`text-left transition-colors duration-0 text-lg py-2 font-mono ${
         activeTab === tab.id
           ? 'font-bold text-black dark:text-white border-b-2 border-black dark:border-white inline-block w-fit'
-          : 'font-medium text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border-b-2 border-transparent'
+          : 'font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 border-b-2 border-transparent'
       }`}
     >
       {tab.label}
@@ -559,7 +559,7 @@ const About: React.FC = () => {
 
       {/* Top Section: The Narrative */}
       <div className="w-full max-w-4xl mb-24">
-        <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300 font-light">
+        <p className="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300 font-light">
           Norwegian Computer Science &amp; Economics undergraduate student at{' '}
           <a
             href="https://www.berkeley.edu/"
@@ -660,7 +660,7 @@ const About: React.FC = () => {
           </div>
 
           {/* NEW CAPTION */}
-          <p className="font-mono text-sm text-gray-500 dark:text-gray-400 mt-3 text-right w-3/4 ml-auto max-md:mx-auto tracking-wide">
+          <p className="font-mono text-sm text-gray-600 dark:text-gray-400 mt-3 text-right w-3/4 ml-auto max-md:mx-auto tracking-wide">
             {currentTab.caption}
           </p>
         </div>

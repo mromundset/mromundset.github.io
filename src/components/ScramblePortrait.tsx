@@ -146,7 +146,7 @@ const ScramblePortrait: React.FC<{ targetAscii: string; active: boolean }> = ({ 
 
   return (
     <div 
-      className="w-full h-full bg-white dark:bg-black overflow-hidden flex items-center justify-center"
+      className="w-full h-full bg-[#F7F3ED] dark:bg-black overflow-hidden flex items-center justify-center"
       style={{ containerType: 'size' }}
     >
       <pre

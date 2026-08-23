@@ -72,7 +72,7 @@ const Coursework: React.FC = () => {
       </h2>
 
       {/* Tab Navigation */}
-      <div className="flex flex-row max-md:flex-col mb-8 border-b border-gray-200 dark:border-gray-800">
+      <div className="flex flex-row max-md:flex-col mb-8 border-b border-gray-300 dark:border-gray-800">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -80,7 +80,7 @@ const Coursework: React.FC = () => {
             className={`pb-3 text-lg font-mono transition-colors border-b-2 flex-1 text-left max-md:py-2 ${
               activeTab === tab.id
                 ? 'text-black dark:text-white border-black dark:border-white font-bold'
-                : 'text-gray-600 dark:text-gray-400 border-transparent hover:text-black dark:hover:text-white'
+                : 'text-gray-700 dark:text-gray-400 border-transparent hover:text-black dark:hover:text-white'
             }`}
           >
             {tab.label}
@@ -117,7 +117,7 @@ const Coursework: React.FC = () => {
                   {course.code}
                 </span>
                 {/* Course Title */}
-                <span className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                <span className="text-gray-700 dark:text-gray-400 text-lg leading-relaxed">
                   {course.title}
                 </span>
               </motion.div>

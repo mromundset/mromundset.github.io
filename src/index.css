@@ -15,7 +15,7 @@
 }
 
 [data-theme="light"] {
-    --clr-bg: #FFF;
+    --clr-bg: #F7F3ED;
     --clr-text: #000;
     --clr-accent: #0B3D0B; /* Forest Green */
     --clr-muted: rgba(0, 0, 0, 0.7);

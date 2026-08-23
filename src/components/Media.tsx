@@ -71,14 +71,14 @@ const mediaItems: MediaItem[] = [
 ];
 
 const CountryTag: React.FC<{ country: Country }> = ({ country }) => (
-  <span className="flex-shrink-0 text-[12px] md:text-[13px] font-semibold tracking-wide uppercase text-gray-500 dark:text-gray-400 whitespace-nowrap">
+  <span className="flex-shrink-0 text-[12px] md:text-[13px] font-semibold tracking-wide uppercase text-gray-600 dark:text-gray-400 whitespace-nowrap">
     {country.toUpperCase()}
   </span>
 );
 
 const MediaRow: React.FC<{ item: MediaItem }> = ({ item }) => (
   <div
-    className="flex items-center py-4 px-4 border-b border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+    className="flex items-center py-4 px-4 border-b border-gray-300 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
   >
     {/* Logo */}
     <div className="w-12 h-12 flex-shrink-0 mr-4">
@@ -97,13 +97,13 @@ const MediaRow: React.FC<{ item: MediaItem }> = ({ item }) => (
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-lg font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors !bg-none"
+          className="text-lg font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors !bg-none"
         >
           {item.outlet}
         </a>
         <CountryTag country={item.country} />
       </div>
-      <p className="text-gray-600 dark:text-gray-400 mt-1">
+      <p className="text-gray-700 dark:text-gray-400 mt-1">
         {item.description}
       </p>
     </div>

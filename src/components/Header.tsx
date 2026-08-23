@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 border-b backdrop-blur-md bg-white/80 dark:bg-black/80 border-gray-200 dark:border-white/10 transition-colors duration-300">
+    <header className="fixed top-0 left-0 w-full z-50 border-b backdrop-blur-md bg-[#F7F3ED]/80 dark:bg-black/80 border-gray-300 dark:border-white/10 transition-colors duration-300">
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-end justify-between">
         {/* Mobile hamburger (hidden on md+, so desktop is unchanged) */}
         <button
@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           )}
         </button>
 
-        <div className="hidden md:flex flex-1 border-b border-gray-200 dark:border-gray-800">
+        <div className="hidden md:flex flex-1 border-b border-gray-300 dark:border-gray-800">
           {navLinks.map((link) => (
             <a
               key={link.id}
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               className={`flex-1 pb-3 text-lg font-mono transition-colors border-b-2 text-left !bg-none ${
                 activeSection === link.id
                   ? 'text-black dark:text-white border-black dark:border-white font-bold'
-                  : 'text-gray-600 dark:text-gray-400 border-transparent hover:text-black dark:hover:text-white'
+                  : 'text-gray-700 dark:text-gray-400 border-transparent hover:text-black dark:hover:text-white'
               }`}
             >
               {link.label}
@@ -117,17 +117,17 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
 
       {/* Mobile dropdown menu (md:hidden, so desktop is unchanged) */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-black/95 backdrop-blur-md">
+        <div className="md:hidden border-t border-gray-300 dark:border-white/10 bg-[#F7F3ED]/95 dark:bg-black/95 backdrop-blur-md">
           <div className="max-w-5xl mx-auto px-6 flex flex-col">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={() => setMenuOpen(false)}
-                className={`py-3 text-lg font-mono border-b border-gray-100 dark:border-white/5 last:border-b-0 !bg-none transition-colors ${
+                className={`py-3 text-lg font-mono border-b border-gray-200 dark:border-white/5 last:border-b-0 !bg-none transition-colors ${
                   activeSection === link.id
                     ? 'text-black dark:text-white font-bold'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white'
+                    : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white'
                 }`}
               >
                 {link.label}

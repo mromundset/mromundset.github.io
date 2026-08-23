@@ -10,7 +10,7 @@ import Contact from './components/Contact';
 import './index.css';
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const twinklingStarsRef = useRef<HTMLDivElement>(null);
   const shootingStarsRef = useRef<HTMLDivElement>(null);
 
@@ -28,8 +28,7 @@ const App: React.FC = () => {
   // Initialize theme from localStorage or system preference
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-    const initialTheme = savedTheme || (prefersLight.matches ? 'light' : 'dark');
+    const initialTheme = savedTheme || 'light';
     setTheme(initialTheme);
   }, []);
 
@@ -165,7 +164,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-[#F7F3ED] dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       <div id="twinkling-stars" ref={twinklingStarsRef}></div>
       <div id="shooting-stars" ref={shootingStarsRef}></div>
       

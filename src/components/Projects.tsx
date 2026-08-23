@@ -80,10 +80,10 @@ const Projects: React.FC = () => {
                 </svg>
               </a>
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-2">
+            <p className="text-gray-700 dark:text-gray-400 leading-relaxed mt-2">
               {project.description}
             </p>
-            <div className="flex items-center gap-2 mt-3 text-gray-600 dark:text-gray-400 text-sm">
+            <div className="flex items-center gap-2 mt-3 text-gray-700 dark:text-gray-400 text-sm">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 width="16" 
@@ -94,11 +94,11 @@ const Projects: React.FC = () => {
                 strokeWidth="2" 
                 strokeLinecap="round" 
                 strokeLinejoin="round"
-                className="flex-shrink-0 text-gray-600 dark:text-gray-400"
+                className="flex-shrink-0 text-gray-700 dark:text-gray-400"
               >
                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
               </svg>
-              <span className="text-gray-600 dark:text-gray-400">{project.technologies}</span>
+              <span className="text-gray-700 dark:text-gray-400">{project.technologies}</span>
             </div>
           </div>
         ))}

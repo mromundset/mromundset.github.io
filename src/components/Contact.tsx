@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
               href={contact.link}
               target={contact.id === 'email' ? '_self' : '_blank'}
               rel={contact.id === 'email' ? undefined : 'noopener noreferrer'}
-              className="text-lg text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors !bg-none"
+              className="text-lg text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors !bg-none"
             >
               {contact.value}
             </a>
