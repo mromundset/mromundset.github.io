@@ -11,6 +11,14 @@ interface Experience {
 
 const workExperiences: Experience[] = [
   {
+    id: 'mck',
+    company: 'McKinsey & Company',
+    role: '[Incoming] Business Analyst',
+    year: '2027',
+    logo: '/logos/mckinsey.jpg',
+    link: 'https://www.mckinsey.com/',
+  },
+  {
     id: 'nbim',
     company: 'Norges Bank Investment Management',
     role: 'Finance - Quantitative Valuations',

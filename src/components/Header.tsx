@@ -3,13 +3,20 @@ import React, { useState, useEffect } from 'react';
 interface HeaderProps {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
+  /** False on a project page, where none of the home sections are mounted. */
+  scrollSpy?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, scrollSpy = true }) => {
   const [activeSection, setActiveSection] = useState('about');
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!scrollSpy) {
+      setActiveSection('');
+      return;
+    }
+
     const handleScroll = () => {
       const contactEl = document.getElementById('contact');
       if (contactEl) {
@@ -39,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrollSpy]);
 
   const navLinks = [
     { id: 'about', label: 'About' },

@@ -528,3 +528,31 @@ body[data-theme="light"] #shooting-stars {
 /* (If you previously had transforms on .active-dropdown, remove them) */
 /* .dropdown-container.active-dropdown intentionally left empty */
 
+
+/* --- DATA VISUALISATION TOKENS ---
+   Categorical slots 1-3 (blue / orange / aqua) carry the three real venues; the
+   internal model is a deliberate neutral because it is a derived quantity, not a
+   venue. Both modes are separately stepped for their own surface and validated
+   with the palette checker, not flipped. Theme is the Tailwind `.dark` class on
+   <html>, so the dark values are scoped to that rather than prefers-color-scheme. */
+:root {
+    --viz-pm: #2a78d6;      /* Polymarket     - categorical slot 1 */
+    --viz-dk: #eb6834;      /* DraftKings     - categorical slot 2 */
+    --viz-pin: #1baf7a;     /* Pinnacle       - categorical slot 3 */
+    --viz-model: #9ca3af;   /* internal model - neutral, not a venue */
+    --viz-grid: rgba(0, 0, 0, 0.14);
+    --viz-ink: #111827;
+    --viz-muted: #4b5563;
+    --viz-surface: #F7F3ED;
+}
+
+.dark {
+    --viz-pm: #3987e5;
+    --viz-dk: #d95926;
+    --viz-pin: #199e70;
+    --viz-model: #8b93a1;
+    --viz-grid: rgba(255, 255, 255, 0.18);
+    --viz-ink: #f3f4f6;
+    --viz-muted: #9ca3af;
+    --viz-surface: #0a0a0a;
+}

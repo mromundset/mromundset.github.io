@@ -7,9 +7,38 @@ import Projects from './components/Projects';
 import Media from './components/Media';
 import Coursework from './components/Coursework';
 import Contact from './components/Contact';
+import ProjectPage from './components/project/ProjectPage';
+import { getProjectBySlug } from './data/projects';
+import { getWriteup } from './projects/registry';
+import { parseHash, type Route } from './routes';
 import './index.css';
 
 const App: React.FC = () => {
+  // Hash routing: '#/project/<slug>' renders a write-up, anything else is home.
+  const [route, setRoute] = useState<Route>(() => parseHash(window.location.hash));
+
+  useEffect(() => {
+    const onHashChange = () => setRoute(parseHash(window.location.hash));
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  // A project page always opens at the top; returning to a section anchor has to
+  // wait for the home sections to mount before the browser can find the target.
+  useEffect(() => {
+    const target =
+      route.name === 'project' ? route.section : window.location.hash.slice(1);
+
+    if (!target || target.startsWith('/')) {
+      if (route.name === 'project') window.scrollTo(0, 0);
+      return;
+    }
+
+    const el = document.getElementById(target);
+    if (el) requestAnimationFrame(() => el.scrollIntoView());
+    else if (route.name === 'project') window.scrollTo(0, 0);
+  }, [route]);
+
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const twinklingStarsRef = useRef<HTMLDivElement>(null);
   const shootingStarsRef = useRef<HTMLDivElement>(null);
@@ -63,37 +92,56 @@ const App: React.FC = () => {
     }
   };
 
-  const spawnShootingStar = () => {
-    if (theme !== 'dark' || !shootingStarsRef.current) {
-      setTimeout(spawnShootingStar, 4000);
-      return;
-    }
-    const star = document.createElement('div');
-    star.className = 'shooting-star';
-    const startX = Math.random() * window.innerWidth;
-    const startY = -150;
-    const endX = Math.random() * window.innerWidth;
-    const endY = window.innerHeight + 150;
-    const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-    const duration = Math.random() * 2 + 1;
-
-    star.style.setProperty('--angle', `${angle + 90}deg`);
-    star.style.setProperty('--start-x', `${startX}px`);
-    star.style.setProperty('--start-y', `${startY}px`);
-    star.style.setProperty('--end-x', `${endX}px`);
-    star.style.setProperty('--end-y', `${endY}px`);
-    star.style.animationDuration = `${duration}s`;
-
-    shootingStarsRef.current.appendChild(star);
-    setTimeout(() => star.remove(), duration * 1000);
-
-    const randomInterval = Math.random() * 15000 + 5000;
-    setTimeout(spawnShootingStar, randomInterval);
-  };
+  // Keep the latest theme readable from inside the long-lived spawner loop
+  const themeRef = useRef(theme);
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
+    let nextSpawnId: ReturnType<typeof setTimeout>;
+    const removalIds = new Set<ReturnType<typeof setTimeout>>();
+
+    const spawnShootingStar = () => {
+      if (themeRef.current !== 'dark' || !shootingStarsRef.current) {
+        nextSpawnId = setTimeout(spawnShootingStar, 4000);
+        return;
+      }
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      const startX = Math.random() * window.innerWidth;
+      const startY = -150;
+      const endX = Math.random() * window.innerWidth;
+      const endY = window.innerHeight + 150;
+      const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+      const duration = Math.random() * 2 + 1;
+
+      star.style.setProperty('--angle', `${angle + 90}deg`);
+      star.style.setProperty('--start-x', `${startX}px`);
+      star.style.setProperty('--start-y', `${startY}px`);
+      star.style.setProperty('--end-x', `${endX}px`);
+      star.style.setProperty('--end-y', `${endY}px`);
+      star.style.animationDuration = `${duration}s`;
+
+      shootingStarsRef.current.appendChild(star);
+      const removalId = setTimeout(() => {
+        star.remove();
+        removalIds.delete(removalId);
+      }, duration * 1000);
+      removalIds.add(removalId);
+
+      const randomInterval = Math.random() * 15000 + 5000;
+      nextSpawnId = setTimeout(spawnShootingStar, randomInterval);
+    };
+
     spawnShootingStar();
-  }, [theme]);
+
+    return () => {
+      clearTimeout(nextSpawnId);
+      removalIds.forEach(clearTimeout);
+      removalIds.clear();
+    };
+  }, []);
 
   // Dropdown functionality
   useEffect(() => {
@@ -163,31 +211,45 @@ const App: React.FC = () => {
     };
   }, []);
 
+  const activeProject =
+    route.name === 'project' ? getProjectBySlug(route.slug) : undefined;
+  const activeWriteup =
+    route.name === 'project' ? getWriteup(route.slug) : undefined;
+
   return (
     <div className="min-h-screen bg-[#F7F3ED] dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
       <div id="twinkling-stars" ref={twinklingStarsRef}></div>
       <div id="shooting-stars" ref={shootingStarsRef}></div>
-      
-      <Header theme={theme} toggleTheme={toggleTheme} />
 
-      <main className="max-w-5xl mx-auto px-6">
-        <Hero />
+      <Header
+        theme={theme}
+        toggleTheme={toggleTheme}
+        scrollSpy={route.name === 'home'}
+      />
 
-        <About />
+      {activeProject && activeWriteup ? (
+        <main className="max-w-5xl mx-auto px-6">
+          <ProjectPage project={activeProject} writeup={activeWriteup} />
+        </main>
+      ) : (
+        <main className="max-w-5xl mx-auto px-6">
+          <Hero />
 
-        <Experiences />
+          <About />
 
-        <Media />
+          <Experiences />
 
-        <Projects />
+          <Media />
 
-        <Coursework />
+          <Projects />
 
-        <Contact />
-      </main>
+          <Coursework />
+
+          <Contact />
+        </main>
+      )}
     </div>
   );
 };
 
 export default App;
-

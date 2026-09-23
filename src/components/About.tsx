@@ -571,7 +571,7 @@ const About: React.FC = () => {
           </a>
           . <br /> Check out my{' '}
           <a
-            href="\M_Romundset_Resume_2026.pdf"
+            href="/M_Romundset_Resume_2026.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="underline !bg-none"
@@ -598,7 +598,7 @@ const About: React.FC = () => {
           </a>
           , or reach me at{' '}
           <a
-            href="mromundset@berkeley.edu"
+            href="mailto:mromundset@berkeley.edu"
             className="underline !bg-none"
           >
             mromundset@berkeley.edu

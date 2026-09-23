@@ -33,7 +33,7 @@ const mediaItems: MediaItem[] = [
     outlet: 'Bodø Nu - Fra Mørkvdemarka til amerikansk eliteuniveristet',
     description: 'Portrait interview about growing up in Northern Norway and sacrifices American culture fosters.',
     logo: '/logos/bodø_nu_logo.jpg',
-    link: 'https://e24.no/internasjonal-oekonomi/i/1M3l7e/har-studiekamerater-som-ikke-toer-aa-reise-hjem-i-ferien',
+    link: 'https://www.bodonu.no/fra-morkvedmarka-til-amerikansk-eliteuniversitet-et-hardt-kjor-betyr-at-du-ma-ofre-mye/f/5-159-153680',
     country: 'Norway',
   },
   {
