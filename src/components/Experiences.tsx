@@ -110,6 +110,14 @@ const involvements: Experience[] = [
     link: 'https://www.diversatech.org/',
   },
   {
+    id: 'isab',
+    company: 'International Students Association at Berkeley',
+    role: 'Core Member',
+    year: '2026 - Present',
+    logo: '/logos/isab_logo.png',
+    link: 'https://isabcal.com//',
+  },
+  {
     id: 'research',
     company: 'UC Berkeley',
     role: 'AI Research',
